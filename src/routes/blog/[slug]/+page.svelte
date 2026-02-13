@@ -1,9 +1,5 @@
 <script lang="ts">
 	let { data } = $props();
-	
-	function renderContent() {
-		return data.content;
-	}
 </script>
 
 <svelte:head>

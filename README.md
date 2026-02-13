@@ -1,42 +1,61 @@
-# sv
+# perryjauld.dev
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Personal website, blog, and portfolio showcase built with SvelteKit.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- 📝 Markdown-based blog system
+- 💼 Portfolio showcase
+- 🎨 SCSS styling
+- ✅ Full test coverage (Vitest + Playwright)
+- 🚀 Deployed on Vercel
 
-```sh
-# create a new project
-npx sv create my-app
-```
+## Tech Stack
 
-To recreate this project with the same configuration:
-
-```sh
-# recreate this project
-npx sv create --template minimal --types ts --install npm .
-```
+- **SvelteKit** - Modern web framework
+- **TypeScript** - Type safety
+- **mdsvex** - Markdown support with remark/rehype plugins
+- **SCSS** - Styling
+- **Vitest** - Unit testing
+- **Playwright** - E2E testing
+- **Vercel** - Deployment
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Start the development server:
 
 ```sh
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
 ## Building
 
-To create a production version of your app:
+Create a production build:
 
 ```sh
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+Preview the production build:
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+```sh
+npm run preview
+```
+
+## Testing
+
+Run unit tests:
+
+```sh
+npm run test
+```
+
+Run e2e tests:
+
+```sh
+npm run test:e2e
+```
+
+## Deployment
+
+This project is configured for deployment on Vercel using the `@sveltejs/adapter-vercel` adapter.
