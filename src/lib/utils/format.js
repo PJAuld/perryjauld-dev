@@ -1,4 +1,4 @@
-export function formatDate(date: string | Date): string {
+export function formatDate(date) {
 	const dateObj = typeof date === 'string' ? new Date(date) : date;
 	return dateObj.toLocaleDateString('en-US', {
 		year: 'numeric',
@@ -7,7 +7,7 @@ export function formatDate(date: string | Date): string {
 	});
 }
 
-export function slugify(text: string): string {
+export function slugify(text) {
 	return text
 		.toLowerCase()
 		.replace(/[^\w\s-]/g, '')
