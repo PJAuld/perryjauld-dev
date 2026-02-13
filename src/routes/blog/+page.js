@@ -4,7 +4,7 @@ export async function load() {
 
 	const allPosts = await Promise.all(
 		iterablePostFiles.map(async ([path, resolver]) => {
-			const { metadata } = await resolver() as { metadata: any };
+			const { metadata } = await resolver();
 			const postPath = path.slice('/src/content/blog/'.length, -'.md'.length);
 
 			return {

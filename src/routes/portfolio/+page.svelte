@@ -1,9 +1,9 @@
-<script lang="ts">
+<script>
 	const projects = [
 		{
 			title: 'Personal Website',
 			description: 'A modern personal website built with SvelteKit, featuring a blog and portfolio showcase.',
-			tech: ['SvelteKit', 'TypeScript', 'SCSS'],
+			tech: ['SvelteKit', 'JavaScript', 'SCSS'],
 			link: 'https://github.com/PJAuld/perryjauld-dev'
 		}
 	];
