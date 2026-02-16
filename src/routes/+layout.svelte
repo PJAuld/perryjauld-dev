@@ -26,6 +26,7 @@
 	loop
 	playsinline
 	aria-hidden="true"
+	poster="/media/background-image.jpeg"
 >
 	{#if backgroundVideoSrc}
 		<source src={backgroundVideoSrc} type="video/mp4" />
@@ -59,6 +60,10 @@
 		object-fit: cover;
 		pointer-events: none;
 		z-index: 0;
+		
+		@media (prefers-reduced-motion: reduce) {
+			display: none;
+		}
 	}
 
 	.layout-container {
@@ -69,13 +74,19 @@
 
 	.body-content {
 		background: var(--color-bg);
+		backdrop-filter: blur(8px) saturate(120%);
+		-webkit-backdrop-filter: blur(8px) saturate(120%);
+		box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
 		margin-left: 200px;
 		min-height: calc(100vh - 100px);
 		height: 100%;
+		animation: fadeIn 0.6s ease-out;
 	}
 
 	.home-icon {
 		background: var(--color-bg-secondary);
+		backdrop-filter: blur(10px) saturate(120%);
+		-webkit-backdrop-filter: blur(10px) saturate(120%);
 		border-bottom: 1px solid var(--color-border);
 		height: 100px;
 		left: 0;
@@ -86,6 +97,9 @@
 
 	.nav-bar {
 		background: var(--color-bg-secondary);
+		backdrop-filter: blur(10px) saturate(120%);
+		-webkit-backdrop-filter: blur(10px) saturate(120%);
+		box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
 		color: var(--color-text);
 		height: calc(100vh - 100px);
 		left: 0;
@@ -119,5 +133,44 @@
 	.title-banner {
 		border-bottom: 1px solid var(--color-border);
 		height: 100px;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (max-width: 768px) {
+		.background-video {
+			display: none;
+		}
+		
+		.body-content, .nav-bar, .home-icon {
+			backdrop-filter: none;
+			-webkit-backdrop-filter: none;
+		}
+		
+		.body-content {
+			margin-left: 0;
+			padding-top: 100px;
+		}
+		
+		.nav-bar {
+			width: 100%;
+			height: auto;
+			position: relative;
+			top: 0;
+			
+			ul {
+				flex-direction: row;
+				justify-content: center;
+			}
+		}
 	}
 </style>
