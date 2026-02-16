@@ -31,7 +31,6 @@
 		.blog-item {
 			margin-bottom: var(--spacing-md);
 			padding: var(--spacing-md);
-			padding-bottom: var(--spacing-md);
 			background: rgba(255, 255, 255, 0.4);
 			backdrop-filter: blur(8px);
 			-webkit-backdrop-filter: blur(8px);
