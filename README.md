@@ -13,7 +13,6 @@ Personal website, blog, and portfolio showcase built with SvelteKit.
 ## Tech Stack
 
 - **SvelteKit** - Modern web framework
-- **TypeScript** - Type safety
 - **mdsvex** - Markdown support with remark/rehype plugins
 - **SCSS** - Styling
 - **Vitest** - Unit testing

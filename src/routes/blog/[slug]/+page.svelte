@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.meta.title} - Perry Jauld</title>
+	<title>{data.meta.title} - Perry J Auld</title>
 </svelte:head>
 
 <main>
@@ -12,9 +12,7 @@
 			<h1>{data.meta.title}</h1>
 			<p class="date">
 				{new Date(data.meta.date).toLocaleDateString('en-US', { 
-					year: 'numeric', 
-					month: 'long', 
-					day: 'numeric' 
+					year: 'numeric', month: 'long', day: 'numeric' 
 				})}
 			</p>
 		</header>

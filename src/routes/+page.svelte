@@ -4,8 +4,7 @@
 
 <main>
 	<section class="hero">
-		<h1>Perry Jauld</h1>
-		<p class="tagline">Developer • Writer • Creator</p>
+		<h1>Perry J Auld</h1>
 	</section>
 
 	<section class="about">

@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test('index page has expected h1', async ({ page }) => {
 	await page.goto('/');
-	await expect(page.locator('h1')).toHaveText('Perry Jauld');
+	await expect(page.locator('h1')).toHaveText('Perry J Auld');
 });
 
 test('navigation links work', async ({ page }) => {
