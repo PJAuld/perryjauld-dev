@@ -33,7 +33,7 @@
 	{/if}
 </video>
 
-<div class="video-overlay"></div>
+<div class="video-overlay" aria-hidden="true"></div>
 
 <div class="layout-container">
 	<div class="home-icon"></div>
