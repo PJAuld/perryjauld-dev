@@ -1,12 +1,12 @@
 :root {
 	--background-image: url('/media/background-image.jpeg');
 	--background-video: url('/media/rocky-coast.mp4');
-	--color-primary: oklch(50% 0.2 270);
-	--color-secondary: oklch(33% 0 270);
-	--color-text: oklch(0% 0 0);
-	--color-bg: oklch(100% 0.4 270 / 0.9);
-	--color-bg-secondary: oklch(80% 0.4 270 / 0.95);
-	--color-border: oklch(55% 0 270);
+	--color-primary: oklch(50% 0.15 240);
+	--color-secondary: oklch(35% 0.12 240);
+	--color-text: oklch(15% 0 0);
+	--color-bg: oklch(95% 0.08 240 / 0.85);
+	--color-bg-secondary: oklch(90% 0.06 240 / 0.92);
+	--color-border: oklch(55% 0.05 240);
 	--spacing-xs: 0.5rem;
 	--spacing-sm: 1rem;
 	--spacing-md: 2rem;
