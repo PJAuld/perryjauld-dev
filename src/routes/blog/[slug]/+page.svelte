@@ -49,6 +49,10 @@
 		}
 		
 		.content {
+			:global(ul) {
+				padding-left: 1.5rem;
+			}
+			
 			:global(h2) {
 				margin-top: 2rem;
 				margin-bottom: 1rem;

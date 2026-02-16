@@ -1,7 +1,3 @@
-<script>
-	import './styles.scss';
-</script>
-
 <main>
 	<section class="hero">
 		<h1>Perry J Auld</h1>
@@ -25,3 +21,38 @@
 		</a>
 	</section>
 </main>
+
+<style lang="scss">
+	.hero {
+		text-align: center;
+		padding: var(--spacing-lg) 0;
+
+		h1 {
+			font-size: 4rem;
+		}
+	}
+
+	.about {
+		margin: var(--spacing-md) 0;
+	}
+
+	.quick-links {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: var(--spacing-md);
+		margin: var(--spacing-md) 0;
+	}
+
+	.link-card {
+		padding: var(--spacing-md);
+		border: 2px solid var(--color-border);
+		border-radius: 8px;
+		transition: transform 0.2s, box-shadow 0.2s;
+
+		&:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+			text-decoration: none;
+		}
+	}
+</style>

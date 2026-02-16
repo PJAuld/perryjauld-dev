@@ -23,3 +23,29 @@
 		</ul>
 	{/if}
 </main>
+
+<style lang="scss">
+	.blog-list {
+		list-style: none;
+
+		.blog-item {
+			margin-bottom: var(--spacing-md);
+			padding-bottom: var(--spacing-md);
+			border-bottom: 1px solid var(--color-border);
+
+			h3 {
+				margin-bottom: var(--spacing-xs);
+			}
+
+			.date {
+				color: #666;
+				font-size: 0.9rem;
+				margin-bottom: var(--spacing-xs);
+			}
+
+			.excerpt {
+				color: #555;
+			}
+		}
+	}
+</style>
