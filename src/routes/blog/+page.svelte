@@ -30,8 +30,20 @@
 
 		.blog-item {
 			margin-bottom: var(--spacing-md);
+			padding: var(--spacing-md);
 			padding-bottom: var(--spacing-md);
-			border-bottom: 1px solid var(--color-border);
+			background: rgba(255, 255, 255, 0.4);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			border-radius: 8px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+			transition: all 0.2s;
+
+			&:hover {
+				background: rgba(255, 255, 255, 0.5);
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+			}
 
 			h3 {
 				margin-bottom: var(--spacing-xs);
