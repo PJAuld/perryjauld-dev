@@ -1,6 +1,8 @@
 <script>
 	import favicon from '$lib/assets/favicon.svg';
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+	import { page } from '$app/stores';
 	import './styles.scss';
 
 	let backgroundVideoSrc = $state('');
@@ -47,7 +49,11 @@
 	<div class="title-banner"></div>
 
 	<div class="body-content">
-		{@render children()}
+		{#key $page.url.pathname}
+			<div in:fade={{ duration: 250 }} >
+				{@render children()}
+			</div>
+		{/key}
 	</div>
 </div>
 
@@ -67,6 +73,7 @@
 	}
 
 	.layout-container {
+		animation: fadeIn 0.5s ease-out;
 		position: relative;
 		z-index: 1;
 		min-height: 100vh;
@@ -80,14 +87,13 @@
 		margin-left: 200px;
 		min-height: calc(100vh - 100px);
 		height: 100%;
-		animation: fadeIn 0.6s ease-out;
 	}
 
 	.home-icon {
 		background: var(--color-bg-secondary);
 		backdrop-filter: blur(10px) saturate(120%);
 		-webkit-backdrop-filter: blur(10px) saturate(120%);
-		border-bottom: 1px solid var(--color-border);
+		// border-bottom: 1px solid var(--color-border);
 		height: 100px;
 		left: 0;
 		position: fixed;
@@ -131,18 +137,18 @@
 	}
 
 	.title-banner {
-		border-bottom: 1px solid var(--color-border);
+		// border-bottom: 1px solid var(--color-border);
 		height: 100px;
 	}
 
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
-			transform: translateY(10px);
+			// transform: translateY(10px);
 		}
 		to {
 			opacity: 1;
-			transform: translateY(0);
+			// transform: translateY(0);
 		}
 	}
 
@@ -160,11 +166,15 @@
 			margin-left: 0;
 			padding-top: 100px;
 		}
+
+		.home-icon {
+			display: none;
+		}
 		
 		.nav-bar {
 			width: 100%;
-			height: auto;
-			position: relative;
+			height: 100px;
+			position: fixed;
 			top: 0;
 			
 			ul {
