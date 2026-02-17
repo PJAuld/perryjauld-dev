@@ -31,16 +31,14 @@
 		.blog-item {
 			margin-bottom: var(--spacing-md);
 			padding: var(--spacing-md);
-			background: rgba(255, 255, 255, 0.4);
-			backdrop-filter: blur(8px);
-			-webkit-backdrop-filter: blur(8px);
+			background: rgba(255, 255, 255, 0.5);
 			border: 1px solid rgba(255, 255, 255, 0.3);
 			border-radius: 8px;
 			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
-			transition: all 0.2s;
+			transition: background 0.2s, box-shadow 0.2s;
 
 			&:hover {
-				background: rgba(255, 255, 255, 0.5);
+				background: rgba(255, 255, 255, 0.6);
 				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 			}
 

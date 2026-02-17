@@ -46,8 +46,8 @@
 	.link-card {
 		padding: var(--spacing-md);
 		background: rgba(255, 255, 255, 0.5);
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px);
+		// backdrop-filter: blur(10px);
+		// -webkit-backdrop-filter: blur(10px);
 		border: 1px solid rgba(255, 255, 255, 0.4);
 		border-radius: 12px;
 		box-shadow: 

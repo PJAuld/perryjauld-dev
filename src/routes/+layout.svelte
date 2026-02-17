@@ -1,12 +1,22 @@
 <script>
 	import favicon from '$lib/assets/favicon.svg';
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
-	import { page } from '$app/stores';
+	import { onNavigate } from '$app/navigation';
 	import './styles.scss';
 
 	let backgroundVideoSrc = $state('');
 	let { children } = $props();
+
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 
 	onMount(() => {
 		const rootStyles = getComputedStyle(document.documentElement);
@@ -51,11 +61,9 @@
 	<div class="title-banner"></div>
 
 	<div class="body-content">
-		{#key $page.url.pathname}
-			<div in:fade={{ duration: 250 }} >
-				{@render children()}
-			</div>
-		{/key}
+		<div class="page-content">
+			{@render children()}
+		</div>
 	</div>
 </div>
 
@@ -83,7 +91,6 @@
 	}
 
 	.layout-container {
-		animation: fadeIn 0.5s ease-out;
 		position: relative;
 		z-index: 1;
 		min-height: 100vh;
@@ -93,14 +100,22 @@
 		background: rgba(255, 255, 255, 0.7);
 		backdrop-filter: blur(20px) saturate(180%);
 		-webkit-backdrop-filter: blur(20px) saturate(180%);
+		border-top-left-radius: var(--corner-rounding);
 		box-shadow: 
 			-4px 0 20px rgba(0, 0, 0, 0.15),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-		margin-left: 200px;
+		margin-left: 210px;
+		margin-top: 20px;
 		min-height: calc(100vh - 100px);
 		height: 100%;
-		animation: fadeIn 0.6s ease-out;
 		border-left: 1px solid rgba(255, 255, 255, 0.2);
+
+		.page-content {
+			view-transition-name: main-content;
+			border-top-left-radius: var(--corner-rounding);
+			height: 100%;
+			min-height: inherit;
+		}
 	}
 
 	.home-icon {
@@ -108,14 +123,15 @@
 		backdrop-filter: blur(20px) saturate(180%);
 		-webkit-backdrop-filter: blur(20px) saturate(180%);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		border-bottom-right-radius: var(--corner-rounding);
 		box-shadow: 
 			0 4px 6px rgba(0, 0, 0, 0.1),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-		height: 100px;
+		height: 90px;
 		left: 0;
 		position: fixed;
 		top: 0;
-		width: 200px;
+		width: 190px;
 	}
 
 	.nav-bar {
@@ -125,13 +141,14 @@
 		box-shadow: 
 			2px 0 10px rgba(0, 0, 0, 0.1),
 			inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+		border-top-right-radius: var(--corner-rounding);
 		color: var(--color-text);
-		height: calc(100vh - 100px);
+		height: calc(100vh - 110px);
 		left: 0;
 		padding: var(--spacing-md);
 		position: fixed;
-		top: 100px;
-		width: 200px;
+		top: 110px;
+		width: 190px;
 		border-right: 1px solid rgba(255, 255, 255, 0.2);
 
 		ul {
@@ -146,7 +163,7 @@
 			display: block;
 			padding: var(--spacing-xs);
 			border-radius: 4px;
-			transition: all 0.2s;
+			transition: background-color 0.2s, backdrop-filter 0.2s;
 			padding-left: 1.5rem;
 
 			&:hover {
@@ -158,20 +175,13 @@
 	}
 
 	.title-banner {
+		background: rgba(255, 255, 255, 0.10);
 		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-		height: 100px;
-		background: rgba(255, 255, 255, 0.05);
-	}
-
-	@keyframes fadeIn {
-		from {
-			opacity: 0;
-			// transform: translateY(10px);
-		}
-		to {
-			opacity: 1;
-			// transform: translateY(0);
-		}
+		border-left: 1px solid rgba(255, 255, 255, 0.3);
+		border-bottom-left-radius: var(--corner-rounding);
+		height: 90px;
+		margin-bottom: 10px;
+		margin-left: 210px;
 	}
 
 	@media (max-width: 768px) {
@@ -203,6 +213,33 @@
 			ul {
 				flex-direction: row;
 				justify-content: center;
+			}
+		}
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		::view-transition-old(main-content) {
+			animation-name: fade-out;
+			animation-duration: 0.15s;
+			animation-timing-function: ease-in-out;
+		}
+
+		::view-transition-new(main-content) {
+			animation-name: fade-in;
+			animation-duration: 0.15s;
+			animation-delay: 0.15s;
+			animation-timing-function: ease-in-out;
+		}
+
+		@keyframes fade-out {
+			to {
+				opacity: 0;
+			}
+		}
+
+		@keyframes fade-in {
+			from {
+				opacity: 0;
 			}
 		}
 	}
