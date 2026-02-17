@@ -45,13 +45,23 @@
 
 	.link-card {
 		padding: var(--spacing-md);
-		border: 2px solid var(--color-border);
-		border-radius: 8px;
-		transition: transform 0.2s, box-shadow 0.2s;
+		background: rgba(255, 255, 255, 0.5);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		border: 1px solid rgba(255, 255, 255, 0.4);
+		border-radius: 12px;
+		box-shadow: 
+			0 4px 6px rgba(0, 0, 0, 0.1),
+			inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+		transition: all 0.3s ease;
 
 		&:hover {
 			transform: translateY(-4px);
-			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+			box-shadow: 
+				0 8px 16px rgba(0, 0, 0, 0.15),
+				inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+			background: rgba(255, 255, 255, 0.6);
+			border-color: rgba(255, 255, 255, 0.5);
 			text-decoration: none;
 		}
 	}

@@ -35,6 +35,8 @@
 	{/if}
 </video>
 
+<div class="video-overlay" aria-hidden="true"></div>
+
 <div class="layout-container">
 	<div class="home-icon"></div>
 
@@ -72,6 +74,14 @@
 		}
 	}
 
+	.video-overlay {
+		position: fixed;
+		inset: 0;
+		background: rgba(0, 0, 0, 0.15);
+		z-index: 0;
+		pointer-events: none;
+	}
+
 	.layout-container {
 		animation: fadeIn 0.5s ease-out;
 		position: relative;
@@ -80,20 +90,27 @@
 	}
 
 	.body-content {
-		background: var(--color-bg);
-		backdrop-filter: blur(8px) saturate(120%);
-		-webkit-backdrop-filter: blur(8px) saturate(120%);
-		box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+		background: rgba(255, 255, 255, 0.7);
+		backdrop-filter: blur(20px) saturate(180%);
+		-webkit-backdrop-filter: blur(20px) saturate(180%);
+		box-shadow: 
+			-4px 0 20px rgba(0, 0, 0, 0.15),
+			inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 		margin-left: 200px;
 		min-height: calc(100vh - 100px);
 		height: 100%;
+		animation: fadeIn 0.6s ease-out;
+		border-left: 1px solid rgba(255, 255, 255, 0.2);
 	}
 
 	.home-icon {
-		background: var(--color-bg-secondary);
-		backdrop-filter: blur(10px) saturate(120%);
-		-webkit-backdrop-filter: blur(10px) saturate(120%);
-		// border-bottom: 1px solid var(--color-border);
+		background: rgba(255, 255, 255, 0.65);
+		backdrop-filter: blur(20px) saturate(180%);
+		-webkit-backdrop-filter: blur(20px) saturate(180%);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		box-shadow: 
+			0 4px 6px rgba(0, 0, 0, 0.1),
+			inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 		height: 100px;
 		left: 0;
 		position: fixed;
@@ -102,10 +119,12 @@
 	}
 
 	.nav-bar {
-		background: var(--color-bg-secondary);
-		backdrop-filter: blur(10px) saturate(120%);
-		-webkit-backdrop-filter: blur(10px) saturate(120%);
-		box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+		background: rgba(255, 255, 255, 0.65);
+		backdrop-filter: blur(20px) saturate(180%);
+		-webkit-backdrop-filter: blur(20px) saturate(180%);
+		box-shadow: 
+			2px 0 10px rgba(0, 0, 0, 0.1),
+			inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 		color: var(--color-text);
 		height: calc(100vh - 100px);
 		left: 0;
@@ -113,6 +132,7 @@
 		position: fixed;
 		top: 100px;
 		width: 200px;
+		border-right: 1px solid rgba(255, 255, 255, 0.2);
 
 		ul {
 			list-style: none;
@@ -126,19 +146,21 @@
 			display: block;
 			padding: var(--spacing-xs);
 			border-radius: 4px;
-			transition: background-color 0.2s;
+			transition: all 0.2s;
 			padding-left: 1.5rem;
 
 			&:hover {
-				background-color: rgba(255, 255, 255, 0.1);
+				background-color: rgba(255, 255, 255, 0.4);
+				backdrop-filter: blur(10px);
 				text-decoration: none;
 			}
 		}
 	}
 
 	.title-banner {
-		// border-bottom: 1px solid var(--color-border);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 		height: 100px;
+		background: rgba(255, 255, 255, 0.05);
 	}
 
 	@keyframes fadeIn {
@@ -153,13 +175,14 @@
 	}
 
 	@media (max-width: 768px) {
-		.background-video {
+		.background-video, .video-overlay {
 			display: none;
 		}
 		
 		.body-content, .nav-bar, .home-icon {
 			backdrop-filter: none;
 			-webkit-backdrop-filter: none;
+			background: rgba(255, 255, 255, 0.95);
 		}
 		
 		.body-content {
