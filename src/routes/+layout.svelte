@@ -1,6 +1,8 @@
 <script>
 	import favicon from '$lib/assets/favicon.svg';
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
+	import { page } from '$app/stores';
 	import './styles.scss';
 
 	let backgroundVideoSrc = $state('');
@@ -49,7 +51,11 @@
 	<div class="title-banner"></div>
 
 	<div class="body-content">
-		{@render children()}
+		{#key $page.url.pathname}
+			<div in:fade={{ duration: 250 }} >
+				{@render children()}
+			</div>
+		{/key}
 	</div>
 </div>
 
@@ -77,6 +83,7 @@
 	}
 
 	.layout-container {
+		animation: fadeIn 0.5s ease-out;
 		position: relative;
 		z-index: 1;
 		min-height: 100vh;
@@ -159,11 +166,11 @@
 	@keyframes fadeIn {
 		from {
 			opacity: 0;
-			transform: translateY(10px);
+			// transform: translateY(10px);
 		}
 		to {
 			opacity: 1;
-			transform: translateY(0);
+			// transform: translateY(0);
 		}
 	}
 
@@ -182,11 +189,15 @@
 			margin-left: 0;
 			padding-top: 100px;
 		}
+
+		.home-icon {
+			display: none;
+		}
 		
 		.nav-bar {
 			width: 100%;
-			height: auto;
-			position: relative;
+			height: 100px;
+			position: fixed;
 			top: 0;
 			
 			ul {
