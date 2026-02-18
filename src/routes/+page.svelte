@@ -1,3 +1,4 @@
+<!-- Home Page -->
 <main>
 	<section class="hero">
 		<h1>Perry J Auld</h1>
@@ -43,24 +44,24 @@
 		margin: var(--spacing-md) 0;
 	}
 
+	/* Link card with glassmorphism styling. */
 	.link-card {
 		padding: var(--spacing-md);
 		background: rgba(255, 255, 255, 0.5);
-		// backdrop-filter: blur(10px);
-		// -webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(10px); /* Frosted glass effect */
+		-webkit-backdrop-filter: blur(10px); /* Safari compatibility */
 		border: 1px solid rgba(255, 255, 255, 0.4);
 		border-radius: 12px;
 		box-shadow: 
-			0 4px 6px rgba(0, 0, 0, 0.1),
-			inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+			0 4px 6px rgba(0, 0, 0, 0.1), /* Soft drop shadow */
+			inset 0 0 0 1px rgba(255, 255, 255, 0.3); /* Inner highlight */
 		transition: all 0.3s ease;
 
 		&:hover {
-			transform: translateY(-4px);
 			box-shadow: 
-				0 8px 16px rgba(0, 0, 0, 0.15),
-				inset 0 0 0 1px rgba(255, 255, 255, 0.4);
-			background: rgba(255, 255, 255, 0.6);
+				0 8px 16px rgba(0, 0, 0, 0.15), /* Stronger shadow for depth */
+				inset 0 0 0 1px rgba(255, 255, 255, 0.4); /* Enhanced inner glow */
+			background: rgba(255, 255, 255, 0.65);
 			border-color: rgba(255, 255, 255, 0.5);
 			text-decoration: none;
 		}

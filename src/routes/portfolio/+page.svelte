@@ -1,8 +1,19 @@
+<!-- Portfolio Page Component -->
 <script>
+	/**
+	 * Array of portfolio projects.
+	 * Each project object should contain:
+	 * - title: Project name
+	 * - description: Brief explanation of the project
+	 * - tech: Array of technologies/frameworks used
+	 * - link: Optional URL to view the project or source code
+	 * @type {Array<{title: string, description: string, tech: string[], link?: string}>}
+	 */
 	const projects = [
 		{
 			title: 'Personal Website',
-			description: 'A modern personal website built with SvelteKit, featuring a blog and portfolio showcase.',
+			description: `This personal website built with SvelteKit, featuring a
+					blog and portfolio showcase.`,
 			tech: ['SvelteKit', 'JavaScript', 'SCSS'],
 			link: 'https://github.com/PJAuld/perryjauld-dev'
 		}
@@ -33,35 +44,40 @@
 </main>
 
 <style lang="scss">
+	/**
+	 * Projects grid container - responsive grid layout for project cards.
+	 * Automatically adjusts number of columns based on available space.
+	 */
 	.projects-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-		gap: 2rem;
+		gap: 2rem; /* Space between cards */
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
 		margin-top: 2rem;
 	}
 	
+	/* Project card with glassmorphism design. */
 	.project-card {
-		padding: 1.5rem;
+		backdrop-filter: blur(10px); /* Frosted glass effect */
+		-webkit-backdrop-filter: blur(10px); /* Safari compatibility */
 		background: rgba(255, 255, 255, 0.5);
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px);
 		border: 1px solid rgba(255, 255, 255, 0.4);
 		border-radius: 12px;
 		box-shadow: 
-			0 4px 6px rgba(0, 0, 0, 0.1),
-			inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+			0 4px 6px rgba(0, 0, 0, 0.1), /* Soft drop shadow */
+			inset 0 0 0 1px rgba(255, 255, 255, 0.3); /* Inner highlight */
+		padding: 1.5rem;
 		transition: all 0.3s ease;
 		
+		/* On hover increase opacity and shadow to highlight */
 		&:hover {
-			transform: translateY(-4px);
+			background: rgba(255, 255, 255, 0.65);
 			box-shadow: 
 				0 8px 16px rgba(0, 0, 0, 0.15),
 				inset 0 0 0 1px rgba(255, 255, 255, 0.4);
-			background: rgba(255, 255, 255, 0.6);
 		}
 		
 		h3 {
-			margin-bottom: 1rem;
+			margin-bottom: 1rem; /* Space before description */
 		}
 		
 		p {
@@ -71,16 +87,15 @@
 		
 		.tech-tags {
 			display: flex;
-			flex-wrap: wrap;
+			flex-wrap: wrap; /* Allow tags to wrap to next line */
 			gap: 0.5rem;
 			margin-bottom: 1rem;
 		}
 		
 		.tag {
-			display: inline-block;
+			display: inline-block; /* Allow padding while staying inline */
 			padding: 0.25rem 0.75rem;
 			background: rgba(227, 242, 253, 0.8);
-			backdrop-filter: blur(5px);
 			color: #0066cc;
 			border-radius: 4px;
 			font-size: 0.85rem;
@@ -88,9 +103,9 @@
 		}
 		
 		a {
-			display: inline-block;
-			margin-top: 0.5rem;
-			font-weight: 600;
+			display: inline-block; /* Allow margin spacing */
+			margin-top: 0.5rem; /* Small space from tech tags */
+			font-weight: 600; /* Semi-bold for emphasis */
 		}
 	}
 </style>
