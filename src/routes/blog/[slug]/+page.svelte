@@ -34,49 +34,49 @@
 		margin: 0 auto; /* Center horizontally */
 
 		header {
-			margin-bottom: 2rem;
+			margin-bottom: var(--spacing-md);
 			
 			h1 {
-				margin-bottom: 0.5rem;
+				margin-bottom: var(--spacing-xs);
 			}
 			
 			.date {
-				color: #666;
-				font-size: 0.9rem;
+				color: var(--color-text-muted);
+				font-size: var(--font-size-date);
 			}
 		}
 		
 		/* Content wrapper uses :global() to style elements rendered by markdown */
 		.content {
 			:global(ul) {
-				padding-left: 1.5rem;
+				padding-left: var(--spacing-card);
 			}
 			
 			:global(h2) {
-				margin-bottom: 1rem;
-				margin-top: 2rem;
+				margin-bottom: var(--spacing-sm);
+				margin-top: var(--spacing-md);
 			}
 
 			:global(h3) {
-				margin-bottom: 0.75rem;
-				margin-top: 1.5rem;
+				margin-bottom: var(--spacing-sm);
+				margin-top: var(--spacing-card);
 			}
 			
 			/* Code blocks */
 			:global(pre) {
-				background: #f5f5f5;
-				border-radius: 4px;
-				margin: 1rem 0;
+				background: var(--color-code-bg);
+				border-radius: var(--radius-code-block);
+				margin: var(--spacing-sm) 0;
 				overflow-x: auto; /* Horizontal scroll for long lines */
-				padding: 1rem;
+				padding: var(--spacing-sm);
 			}
 			
 			/* Inline code */
 			:global(code) {
-				background: #f5f5f5;
-				border-radius: 3px;
-				font-size: 0.9em;
-				padding: 0.2rem 0.4rem;
+				background: var(--color-code-bg);
+				border-radius: var(--radius-code);
+				font-size: var(--font-size-code);
+				padding: var(--spacing-code-v) var(--spacing-code-h);
 			}
 			
 			/* Code inside pre blocks - removes inline code styling */
@@ -88,16 +88,16 @@
 			/* Quoted content */
 			:global(blockquote) {
 				border-left: 4px solid var(--color-primary);
-				color: #666;
-				margin: 1rem 0;
-				padding-left: 1rem;
+				color: var(--color-text-muted);
+				margin: var(--spacing-sm) 0;
+				padding-left: var(--spacing-sm);
 			}
 		}
 	}
 	
 	nav {
 		border-top: 1px solid var(--color-border);
-		margin-top: 3rem;
-		padding-top: 2rem;
+		margin-top: var(--spacing-xl);
+		padding-top: var(--spacing-md);
 	}
 </style>
