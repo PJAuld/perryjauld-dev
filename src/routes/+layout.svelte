@@ -93,8 +93,8 @@
     width: 100%; 
     object-fit: cover; /* Ensures video fills container while maintaining aspect ratio */
     pointer-events: none; /* Prevents interaction with video */
-    z-index: 0; /* Places video behind all content */
-    animation: video-fade 24.5s ease-in-out infinite;
+    z-index: var(--z-index-background); /* Places video behind all content */
+    animation: video-fade var(--animation-video-fade) ease-in-out infinite;
 
     @media (prefers-reduced-motion: reduce) {
       display: none;
@@ -110,53 +110,49 @@
 
   /* Adds subtle darkening to improve text readability and create depth. */
   .video-overlay { 
-    background: rgba(0, 0, 0, 0.15);
+    background: var(--video-overlay-bg);
     inset: 0;
     position: fixed;
     pointer-events: none;
-    z-index: 0;
+    z-index: var(--z-index-background);
   }
 
   /* Creates a new stacking context above the background layers. */
   .layout-container {
     position: relative;
-    z-index: 1; /* Positions content above video and overlay */
+    z-index: var(--z-index-content); /* Positions content above video and overlay */
     min-height: 100vh; /* Ensures layout fills viewport even with minimal content */
   }
 
   /* Decorative home icon area in the top-left corner. */
   .home-icon {
-    background: rgba(255, 255, 255, 0.20);
-    backdrop-filter: blur(10px) saturate(180%); /* Creates frosted glass effect */
-    -webkit-backdrop-filter: blur(10px) saturate(180%); /* Safari support */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border for definition */
+    background: var(--glass-bg-light);
+    backdrop-filter: var(--glass-blur-light); /* Creates frosted glass effect */
+    -webkit-backdrop-filter: var(--glass-blur-light); /* Safari support */
+    border-bottom: 1px solid var(--glass-border-medium); /* Subtle border for definition */
     border-bottom-right-radius: var(--corner-rounding); /* Custom organic corner shape */
-    box-shadow: 
-      0 4px 6px rgba(0, 0, 0, 0.1), /* Soft drop shadow */
-      inset 0 0 0 1px rgba(255, 255, 255, 0.3); /* Inner highlight for depth */
+    box-shadow: var(--glass-shadow-default);
     position: fixed; /* Stays in place during scroll */
     top: 0;
     left: 0;
-    height: 90px;
-    width: 190px;
+    height: var(--layout-header-height);
+    width: var(--layout-sidebar-width);
   }
 
   /* Main navigation sidebar. */
   .nav-bar {
-    background: rgba(255, 255, 255, 0.60);
-    backdrop-filter: blur(20px) saturate(180%); /* Frosted glass blur effect */
-    -webkit-backdrop-filter: blur(20px) saturate(180%); /* Safari compatibility */
-    border-right: 1px solid rgba(255, 255, 255, 0.2); /* Subtle separator */
+    background: var(--glass-bg-medium);
+    backdrop-filter: var(--glass-blur-heavy); /* Frosted glass blur effect */
+    -webkit-backdrop-filter: var(--glass-blur-heavy); /* Safari compatibility */
+    border-right: 1px solid var(--glass-border-light); /* Subtle separator */
     border-top-right-radius: var(--corner-rounding); /* Organic corner shape */
-    box-shadow: 
-      2px 0 10px rgba(0, 0, 0, 0.1), /* Shadow on right edge */
-      inset 0 0 0 1px rgba(255, 255, 255, 0.3); /* Inner glow */
+    box-shadow: var(--glass-shadow-nav);
     color: var(--color-text);
     position: fixed; /* Sidebar stays visible during scroll */
-    top: 110px; /* Below home icon plus gap */
+    top: var(--layout-sidebar-offset); /* Below home icon plus gap */
     left: 0;
-    height: calc(100vh - 110px); /* Full height minus top spacing */
-    width: 190px;
+    height: calc(100vh - var(--layout-sidebar-offset)); /* Full height minus top spacing */
+    width: var(--layout-sidebar-width);
     padding: var(--spacing-md);
 
     ul {
@@ -168,15 +164,15 @@
 
     a {
       display: block; /* Makes entire area clickable */
-      border-radius: 4px;
+      border-radius: var(--radius-link);
       color: var(--color-text);
       padding: var(--spacing-xs);
-      padding-left: 1.5rem;
-      transition: background-color 0.2s, backdrop-filter 0.2s;
+      padding-left: var(--padding-link-left);
+      transition: background-color var(--transition-link), backdrop-filter var(--transition-link);
 
       &:hover {
-        background-color: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
+        background-color: var(--glass-bg-hover);
+        backdrop-filter: var(--glass-blur-hover);
         text-decoration: none; /* Remove underline */
       }
     }
@@ -184,33 +180,29 @@
 
   /* Decorative header space above content. */
   .title-banner {
-    background: rgba(255, 255, 255, 0.20);
-    backdrop-filter: blur(10px) saturate(180%); /* Creates frosted glass effect */
-    -webkit-backdrop-filter: blur(10px) saturate(180%); /* Safari support */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    background: var(--glass-bg-light);
+    backdrop-filter: var(--glass-blur-light); /* Creates frosted glass effect */
+    -webkit-backdrop-filter: var(--glass-blur-light); /* Safari support */
+    border-bottom: 1px solid var(--glass-border-medium);
+    border-left: 1px solid var(--glass-border-medium);
     border-bottom-left-radius: var(--corner-rounding);
-    box-shadow: 
-      0 4px 6px rgba(0, 0, 0, 0.1), /* Soft drop shadow */
-      inset 0 0 0 1px rgba(255, 255, 255, 0.3); /* Inner highlight for depth */
-    height: 90px;
-    margin-bottom: 10px; /* Gap before body content */
-    margin-left: 210px; /* Aligns with nav bar width plus gap */
+    box-shadow: var(--glass-shadow-default);
+    height: var(--layout-header-height);
+    margin-bottom: var(--layout-gap-sm); /* Gap before body content */
+    margin-left: var(--layout-content-offset); /* Aligns with nav bar width plus gap */
   }
 
   /* Main body containing all page content. */
   .body-content {
-    background: rgba(255, 255, 255, 0.60);
-    backdrop-filter: blur(20px) saturate(180%); /* Creates frosted glass effect */
-    -webkit-backdrop-filter: blur(20px) saturate(180%); /* Safari compatibility */
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    background: var(--glass-bg-medium);
+    backdrop-filter: var(--glass-blur-heavy); /* Creates frosted glass effect */
+    -webkit-backdrop-filter: var(--glass-blur-heavy); /* Safari compatibility */
+    border-left: 1px solid var(--glass-border-light);
     border-top-left-radius: var(--corner-rounding);
-    box-shadow: 
-      -4px 0 20px rgba(0, 0, 0, 0.15), /* Shadow on left edge for depth */
-      inset 0 0 0 1px rgba(255, 255, 255, 0.3); /* Inner highlight */
-    margin-left: 210px; /* Offset by nav bar width */
-    margin-top: 20px; /* Space from title banner */
-    min-height: calc(100vh - 110px);
+    box-shadow: var(--glass-shadow-body);
+    margin-left: var(--layout-content-offset); /* Offset by nav bar width */
+    margin-top: var(--layout-gap-md); /* Space from title banner */
+    min-height: calc(100vh - var(--layout-sidebar-offset));
     height: 100%;
 
     /* Page content wrapper - target for view transitions. Match parent values */
@@ -231,7 +223,7 @@
     
     /* Make glassmorphism elements more opaque for better readability. */
     .body-content, .nav-bar, .home-icon {
-      background: rgba(255, 255, 255, 0.80);
+      background: var(--glass-bg-heavy);
       backdrop-filter: none; /* Remove blur with no video */
       -webkit-backdrop-filter: none;
     }
@@ -239,7 +231,7 @@
     .body-content {
       border-top-left-radius: 0; /* Remove corner radius for full-width */
       margin-left: 0; /* Full width */
-      margin-top: 82px; /* Space below nav bar */
+      margin-top: var(--layout-mobile-content-offset); /* Space below nav bar */
     }
 
     .home-icon, .title-banner {
@@ -248,12 +240,12 @@
 
     .nav-bar {
       border-top-right-radius: 0; /* Remove sidebar corner */
-      padding: 20px;
+      padding: var(--layout-gap-md);
       position: fixed;
       top: 0;
-      height: 80px;
+      height: var(--layout-mobile-nav-height);
       width: 100%;
-      z-index: 1;
+      z-index: var(--z-index-content);
       
       ul {
         flex-direction: row; /* Stack links horizontally */
@@ -266,14 +258,14 @@
   @media (prefers-reduced-motion: no-preference) {
     ::view-transition-old(main-content) {
       animation-name: fade-out;
-      animation-duration: 0.15s;
+      animation-duration: var(--transition-view-duration);
       animation-timing-function: ease-in-out;
     }
 
     ::view-transition-new(main-content) {
       animation-name: fade-in;
-      animation-duration: 0.15s;
-      animation-delay: 0.15s;
+      animation-duration: var(--transition-view-duration);
+      animation-delay: var(--transition-view-duration);
       animation-timing-function: ease-in-out;
     }
 

@@ -27,7 +27,7 @@
 	
 	<div class="projects-grid">
 		{#each projects as project}
-			<article class="project-card">
+			<article class="project-card glass-card">
 				<h3>{project.title}</h3>
 				<p>{project.description}</p>
 				<div class="tech-tags">

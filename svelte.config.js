@@ -6,17 +6,17 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	extensions: ['.svelte', '.md'],
-	preprocess: [
-		mdsvex({
-			extensions: ['.md'],
-			remarkPlugins: [remarkGfm],
-			rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
-		})
-	],
-	kit: {
-		adapter: adapter()
-	}
+  extensions: ['.svelte', '.md'],
+  preprocess: [
+    mdsvex({
+      extensions: ['.md'],
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings]
+    })
+  ],
+  kit: {
+    adapter: adapter()
+  }
 };
 
 export default config;

@@ -12,7 +12,7 @@
 	{:else}
 		<ul class="blog-list">
 			{#each data.posts as post}
-				<li class="blog-item">
+				<li class="blog-item glass-card">
 					<h3>
 						<a href="/blog/{post.path}">{post.meta.title}</a>
 					</h3>

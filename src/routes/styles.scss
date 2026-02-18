@@ -64,6 +64,46 @@
 	/* Transitions */
 	--transition-duration: 0.3s;
 	--transition-card: all 0.3s ease;
+	--transition-link: 0.2s;
+	--transition-view-duration: 0.15s;
+
+	/* Glassmorphism - Backgrounds */
+	--glass-bg-light: rgba(255, 255, 255, 0.20);
+	--glass-bg-medium: rgba(255, 255, 255, 0.60);
+	--glass-bg-heavy: rgba(255, 255, 255, 0.80);
+	--glass-bg-hover: rgba(255, 255, 255, 0.2);
+
+	/* Glassmorphism - Borders */
+	--glass-border-light: rgba(255, 255, 255, 0.2);
+	--glass-border-medium: rgba(255, 255, 255, 0.3);
+
+	/* Glassmorphism - Backdrop Filters */
+	--glass-blur-light: blur(10px) saturate(180%);
+	--glass-blur-heavy: blur(20px) saturate(180%);
+	--glass-blur-hover: blur(10px);
+
+	/* Glassmorphism - Box Shadows */
+	--glass-shadow-default: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+	--glass-shadow-nav: 2px 0 10px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+	--glass-shadow-body: -4px 0 20px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+
+	/* Layout - Dimensions */
+	--layout-header-height: 90px;
+	--layout-sidebar-width: 190px;
+	--layout-gap-sm: 10px;
+	--layout-gap-md: 20px;
+	--layout-sidebar-offset: 110px; /* header height + gap */
+	--layout-content-offset: 210px; /* sidebar width + gap */
+	--layout-mobile-nav-height: 80px;
+	--layout-mobile-content-offset: 82px;
+
+	/* Layout - Other */
+	--video-overlay-bg: rgba(0, 0, 0, 0.15);
+	--animation-video-fade: 24.5s;
+	--z-index-background: 0;
+	--z-index-content: 1;
+	--radius-link: 4px;
+	--padding-link-left: 1.5rem;
 }
 
 /* Universal box-sizing reset. */

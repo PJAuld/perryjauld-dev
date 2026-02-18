@@ -12,11 +12,11 @@
 	</section>
 
 	<section class="quick-links">
-		<a href="/blog" class="link-card">
+		<a href="/blog" class="link-card glass-card">
 			<h3>Blog</h3>
 			<p>Read my latest posts and thoughts</p>
 		</a>
-		<a href="/portfolio" class="link-card">
+		<a href="/portfolio" class="link-card glass-card">
 			<h3>Portfolio</h3>
 			<p>Explore my projects and work</p>
 		</a>
@@ -47,7 +47,6 @@
 	/* Link card with glassmorphism styling. */
 	.link-card {
 		padding: var(--spacing-md);
-		@include glass-card;
 
 		&:hover {
 			text-decoration: none;
