@@ -94,10 +94,18 @@
     object-fit: cover; /* Ensures video fills container while maintaining aspect ratio */
     pointer-events: none; /* Prevents interaction with video */
     z-index: 0; /* Places video behind all content */
-    
+    animation: video-fade 24.5s ease-in-out infinite;
+
     @media (prefers-reduced-motion: reduce) {
       display: none;
     }
+  }
+
+  @keyframes video-fade {
+    0% { opacity: 0; }
+    3% { opacity: 1; }
+    97% { opacity: 1; }
+    100% { opacity: 0; } 
   }
 
   /* Adds subtle darkening to improve text readability and create depth. */
