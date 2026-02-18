@@ -50,61 +50,45 @@
 	 */
 	.projects-grid {
 		display: grid;
-		gap: 2rem; /* Space between cards */
+		gap: var(--spacing-md); /* Space between cards */
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive columns */
-		margin-top: 2rem;
+		margin-top: var(--spacing-md);
 	}
 	
 	/* Project card with glassmorphism design. */
 	.project-card {
-		backdrop-filter: blur(10px); /* Frosted glass effect */
-		-webkit-backdrop-filter: blur(10px); /* Safari compatibility */
-		background: rgba(255, 255, 255, 0.5);
-		border: 1px solid rgba(255, 255, 255, 0.4);
-		border-radius: 12px;
-		box-shadow: 
-			0 4px 6px rgba(0, 0, 0, 0.1), /* Soft drop shadow */
-			inset 0 0 0 1px rgba(255, 255, 255, 0.3); /* Inner highlight */
-		padding: 1.5rem;
-		transition: all 0.3s ease;
-		
-		/* On hover increase opacity and shadow to highlight */
-		&:hover {
-			background: rgba(255, 255, 255, 0.65);
-			box-shadow: 
-				0 8px 16px rgba(0, 0, 0, 0.15),
-				inset 0 0 0 1px rgba(255, 255, 255, 0.4);
-		}
+		@include glass-card;
+		padding: var(--spacing-card);
 		
 		h3 {
-			margin-bottom: 1rem; /* Space before description */
+			margin-bottom: var(--spacing-sm); /* Space before description */
 		}
 		
 		p {
 			color: var(--color-text);
-			margin-bottom: 1rem;
+			margin-bottom: var(--spacing-sm);
 		}
 		
 		.tech-tags {
 			display: flex;
 			flex-wrap: wrap; /* Allow tags to wrap to next line */
-			gap: 0.5rem;
-			margin-bottom: 1rem;
+			gap: var(--spacing-tag);
+			margin-bottom: var(--spacing-sm);
 		}
 		
 		.tag {
 			display: inline-block; /* Allow padding while staying inline */
-			padding: 0.25rem 0.75rem;
-			background: rgba(227, 242, 253, 0.8);
-			color: #0066cc;
-			border-radius: 4px;
-			font-size: 0.85rem;
-			border: 1px solid rgba(0, 102, 204, 0.2);
+			padding: var(--spacing-tag-v) var(--spacing-tag-h);
+			background: var(--color-tag-bg);
+			color: var(--color-tag-text);
+			border-radius: var(--radius-tag);
+			font-size: var(--font-size-tag);
+			border: 1px solid var(--color-tag-border);
 		}
 		
 		a {
 			display: inline-block; /* Allow margin spacing */
-			margin-top: 0.5rem; /* Small space from tech tags */
+			margin-top: var(--spacing-tag); /* Small space from tech tags */
 			font-weight: 600; /* Semi-bold for emphasis */
 		}
 	}

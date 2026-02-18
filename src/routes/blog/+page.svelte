@@ -32,38 +32,22 @@
 
 		/* Card-style layout with glassmorphism design. */
 		.blog-item {
-			backdrop-filter: blur(10px); /* Frosted glass effect */
-			-webkit-backdrop-filter: blur(10px); /* Safari compatibility */
-			background: rgba(255, 255, 255, 0.5);
-			border: 1px solid rgba(255, 255, 255, 0.4);
-			border-radius: 12px;
-			box-shadow: 
-				0 4px 6px rgba(0, 0, 0, 0.1), /* Soft drop shadow */
-				inset 0 0 0 1px rgba(255, 255, 255, 0.3); /* Inner highlight */
+			@include glass-card;
 			margin-bottom: var(--spacing-md);
 			padding: var(--spacing-md);
-			transition: all 0.3s ease;
-
-			/* On hover increase opacity and shadow to highlight */
-			&:hover {
-				background: rgba(255, 255, 255, 0.65);
-				box-shadow: 
-					0 8px 16px rgba(0, 0, 0, 0.15),
-					inset 0 0 0 1px rgba(255, 255, 255, 0.4);
-			}
 
 			h3 {
 				margin-bottom: var(--spacing-xs);
 			}
 
 			.date {
-				color: #666;
-				font-size: 0.9rem;
+				color: var(--color-text-muted);
+				font-size: var(--font-size-date);
 				margin-bottom: var(--spacing-xs);
 			}
 
 			.excerpt {
-				color: #555;
+				color: var(--color-text-subtle);
 			}
 		}
 	}

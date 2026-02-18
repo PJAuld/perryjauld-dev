@@ -29,7 +29,7 @@
 		padding: var(--spacing-lg) 0;
 
 		h1 {
-			font-size: 4rem;
+			font-size: var(--font-size-hero);
 		}
 	}
 
@@ -47,22 +47,9 @@
 	/* Link card with glassmorphism styling. */
 	.link-card {
 		padding: var(--spacing-md);
-		background: rgba(255, 255, 255, 0.5);
-		backdrop-filter: blur(10px); /* Frosted glass effect */
-		-webkit-backdrop-filter: blur(10px); /* Safari compatibility */
-		border: 1px solid rgba(255, 255, 255, 0.4);
-		border-radius: 12px;
-		box-shadow: 
-			0 4px 6px rgba(0, 0, 0, 0.1), /* Soft drop shadow */
-			inset 0 0 0 1px rgba(255, 255, 255, 0.3); /* Inner highlight */
-		transition: all 0.3s ease;
+		@include glass-card;
 
 		&:hover {
-			box-shadow: 
-				0 8px 16px rgba(0, 0, 0, 0.15), /* Stronger shadow for depth */
-				inset 0 0 0 1px rgba(255, 255, 255, 0.4); /* Enhanced inner glow */
-			background: rgba(255, 255, 255, 0.65);
-			border-color: rgba(255, 255, 255, 0.5);
 			text-decoration: none;
 		}
 	}
