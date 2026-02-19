@@ -3,15 +3,24 @@
   import { onMount } from 'svelte';
   import { onNavigate } from '$app/navigation';
   import favicon from '$lib/assets/favicon.svg';
+  import ThemeToggle from '$lib/components/theme_toggle.svelte';
+  import {
+    THEME_DARK,
+    THEME_LIGHT,
+    applyTheme,
+    setStoredTheme,
+  } from '$lib/utils/theme.js';
   import './styles.scss';
 
   // Reactive state for the background video source URL
   let backgroundVideoSrc = $state(''); // initialized empty; set on mount
+  let currentTheme = $state(THEME_LIGHT); // initialized to light; updated on mount
   let { children } = $props(); // slot content
 
   /**
    * Reads the --background-video CSS variable, parses the URL,
    *     and sets as the background video source.
+   * Also initializes the theme state from the data-theme attribute.
    */
   onMount(() => {
     const rootStyles = getComputedStyle(document.documentElement);
@@ -21,7 +30,21 @@
     const STRING_IN_URL_TAG = /^url\(['"]?(.+?)['"]?\)$/;
     const match = rawSrc.match(STRING_IN_URL_TAG);
     backgroundVideoSrc = match ? match[1] : rawSrc;
+
+    // Read initial theme from data-theme attribute set by app.html script
+    currentTheme = document.documentElement.dataset.theme || THEME_LIGHT;
   });
+
+  /**
+   * Toggles between light and dark themes.
+   * Applies the new theme and saves it to localStorage.
+   */
+  const toggleTheme = () => {
+    const newTheme = currentTheme === THEME_DARK ? THEME_LIGHT : THEME_DARK;
+    currentTheme = newTheme;
+    applyTheme(newTheme);
+    setStoredTheme(newTheme);
+  };
 
   /**
    * Uses View Transition API to create fade effects between pages.
@@ -76,7 +99,9 @@
     </ul>
   </nav>
 
-  <div class="title-banner"></div>
+  <div class="title-banner">
+    <ThemeToggle currentTheme={currentTheme} onToggle={toggleTheme} />
+  </div>
 
   <div class="body-content">
     <div class="page-content">
@@ -190,6 +215,7 @@
     height: var(--layout-header-height);
     margin-bottom: var(--layout-gap-sm); /* Gap before body content */
     margin-left: var(--layout-content-offset); /* Aligns with nav bar width plus gap */
+    position: relative; /* For absolutely positioned toggle button */
   }
 
   /* Main body containing all page content. */
@@ -308,6 +334,33 @@
     }
   }
 
+  /* Dark mode styles for mobile */
+  @media (max-width: 768px) {
+    :global([data-theme="dark"]) {
+      .video-overlay {
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .body-content, .nav-bar {
+        background: rgba(0, 0, 0, 0.65);
+      }
+
+      .body-content {
+        border-left: 1px solid rgba(0, 0, 0, 0.3);
+        border-right: 1px solid rgba(0, 0, 0, 0.3);
+        border-top: 1px solid rgba(0, 0, 0, 0.3);
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+      }
+
+      .nav-bar {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+        border-left: 1px solid rgba(0, 0, 0, 0.3);
+        border-right: 1px solid rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+      }
+    }
+  }
+
   /* View transition animations */
   @media (prefers-reduced-motion: no-preference) {
     ::view-transition-old(main-content) {
@@ -332,3 +385,4 @@
     }
   }
 </style>
+

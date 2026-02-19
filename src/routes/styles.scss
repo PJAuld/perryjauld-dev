@@ -106,6 +106,56 @@
 	--padding-link-left: 1.5rem;
 }
 
+/* Dark mode theme variables */
+[data-theme="dark"] {
+	--color-primary: oklch(65% 0.15 240);
+	--color-secondary: oklch(75% 0.12 240);
+	--color-text: oklch(90% 0 0);
+	--color-bg: rgba(0, 0, 0, 0.7);
+	--color-bg-secondary: rgba(0, 0, 0, 0.65);
+	--color-border: rgba(0, 0, 0, 0.3);
+
+	/* Text colors */
+	--color-text-muted: #aaa;
+	--color-text-subtle: #bbb;
+
+	/* Tag colors */
+	--color-tag-bg: rgba(30, 58, 138, 0.6);
+	--color-tag-text: #93c5fd;
+	--color-tag-border: rgba(147, 197, 253, 0.3);
+
+	/* Code colors */
+	--color-code-bg: #1a1a1a;
+
+	/* Card glassmorphism */
+	--card-bg: rgba(0, 0, 0, 0.5);
+	--card-bg-hover: rgba(0, 0, 0, 0.65);
+	--card-border: rgba(255, 255, 255, 0.1);
+	--card-border-hover: rgba(255, 255, 255, 0.15);
+
+	/* Shadows */
+	--shadow-card: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	--shadow-card-hover: 0 8px 16px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+
+	/* Glassmorphism - Backgrounds */
+	--glass-bg-light: rgba(0, 0, 0, 0.20);
+	--glass-bg-medium: rgba(0, 0, 0, 0.60);
+	--glass-bg-heavy: rgba(0, 0, 0, 0.80);
+	--glass-bg-hover: rgba(255, 255, 255, 0.1);
+
+	/* Glassmorphism - Borders */
+	--glass-border-light: rgba(255, 255, 255, 0.1);
+	--glass-border-medium: rgba(255, 255, 255, 0.15);
+
+	/* Glassmorphism - Box Shadows */
+	--glass-shadow-default: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	--glass-shadow-nav: 2px 0 10px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	--glass-shadow-body: -4px 0 20px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+
+	/* Layout - Other */
+	--video-overlay-bg: rgba(255, 255, 255, 0.05);
+}
+
 /* Universal box-sizing reset. */
 * {
 	box-sizing: border-box; /* Include padding and border in element width/height */
@@ -124,6 +174,12 @@ html {
 	background-position: center; /* Center image in viewport */
 	background-repeat: no-repeat; /* Prevent tiling */
 	background-size: cover; /* Scale to cover entire viewport */
+}
+
+/* Dark mode background - fade to black instead of light image */
+[data-theme="dark"] html {
+	background-color: #000;
+	background-image: none;
 }
 
 body {
