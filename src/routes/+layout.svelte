@@ -225,6 +225,10 @@
     .video-overlay {
       background: rgba(0, 0, 0, 0.25);
     }
+
+    .layout-container {
+      min-height: calc(100vh - 78px); /* Full height minus nav bar */
+    }
     
     /* Maintain glassmorphism with more translucent background */
     .body-content, .nav-bar {
@@ -241,7 +245,8 @@
       border-top-right-radius: var(--corner-rounding);
       box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
       margin-left: 0; /* Full width */
-      margin-top: 72px; /* Align with new nav height */
+      margin-top: 78px; /* Align with new nav height */
+      min-height: calc(100vh - 79px); /* Full height minus nav bar */
 
       .page-content {
         border-top-left-radius: var(--corner-rounding);
@@ -255,6 +260,7 @@
 
     /* Repurpose title banner as subtle gradient accent bar */
     .title-banner {
+      display: none;
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
       background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-secondary), transparent);
