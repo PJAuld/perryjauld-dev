@@ -216,40 +216,88 @@
 
   /* Mobile responsive for small screens. */
   @media (max-width: 768px) {
-    /* Hide background video and overlay */
-    .background-video, .video-overlay {
-      display: none;
+    /* Keep background video but optimize for mobile with blur */
+    .background-video {
+      filter: blur(2px);
+    }
+
+    /* Adjust overlay for better mobile readability */
+    .video-overlay {
+      background: rgba(0, 0, 0, 0.25);
     }
     
-    /* Make glassmorphism elements more opaque for better readability. */
-    .body-content, .nav-bar, .home-icon {
-      background: var(--glass-bg-heavy);
-      backdrop-filter: none; /* Remove blur with no video */
-      -webkit-backdrop-filter: none;
+    /* Maintain glassmorphism with more translucent background */
+    .body-content, .nav-bar {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px) saturate(150%);
+      -webkit-backdrop-filter: blur(12px) saturate(150%);
     }
 
     .body-content {
-      border-top-left-radius: 0; /* Remove corner radius for full-width */
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-top-left-radius: var(--corner-rounding);
+      border-top-right-radius: var(--corner-rounding);
+      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
       margin-left: 0; /* Full width */
-      margin-top: var(--layout-mobile-content-offset); /* Space below nav bar */
+      margin-top: 72px; /* Align with new nav height */
+
+      .page-content {
+        border-top-left-radius: var(--corner-rounding);
+        border-top-right-radius: var(--corner-rounding);
+      }
     }
 
-    .home-icon, .title-banner {
+    .home-icon {
       display: none;
     }
 
+    /* Repurpose title banner as subtle gradient accent bar */
+    .title-banner {
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-secondary), transparent);
+      border: none;
+      border-radius: 0;
+      box-shadow: none;
+      height: 4px;
+      margin: 0;
+      position: fixed;
+      top: 72px;
+      width: 100%;
+      z-index: 2;
+    }
+
     .nav-bar {
-      border-top-right-radius: 0; /* Remove sidebar corner */
-      padding: var(--layout-gap-md);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom-left-radius: var(--corner-rounding);
+      border-bottom-right-radius: var(--corner-rounding);
+      border-top-right-radius: 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+      padding: 16px 20px;
       position: fixed;
       top: 0;
-      height: var(--layout-mobile-nav-height);
+      height: 72px;
       width: 100%;
       z-index: var(--z-index-content);
       
       ul {
         flex-direction: row; /* Stack links horizontally */
+        gap: var(--spacing-md);
         justify-content: center; /* Center links in available space */
+      }
+
+      a {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border-radius: 8px;
+
+        &:hover {
+          backdrop-filter: blur(15px);
+          -webkit-backdrop-filter: blur(15px);
+        }
       }
     }
   }
