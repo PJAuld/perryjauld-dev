@@ -36,8 +36,7 @@
   });
 
   /**
-   * Toggles between light and dark themes.
-   * Applies the new theme and saves it to localStorage.
+   * Toggles between light and dark themes. Saves theme to localStorage
    */
   const toggleTheme = () => {
     const newTheme = currentTheme === THEME_DARK ? THEME_LIGHT : THEME_DARK;
@@ -385,4 +384,3 @@
     }
   }
 </style>
-

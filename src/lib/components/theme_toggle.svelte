@@ -1,7 +1,7 @@
 <!-- Theme Toggle Component -->
 <script>
   import { THEME_DARK } from '$lib/utils/theme.js';
-
+  
   let { currentTheme = 'light', onToggle = () => {} } = $props();
 
   const isDark = $derived(currentTheme === THEME_DARK);

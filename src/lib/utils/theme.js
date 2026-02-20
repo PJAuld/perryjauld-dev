@@ -1,8 +1,4 @@
-/**
- * Theme utility functions for managing light/dark mode.
- * Handles system preference detection, localStorage persistence,
- * and theme application.
- */
+/* Theme utility functions for managing light/dark mode. */
 
 const THEME_KEY = 'theme';
 const THEME_LIGHT = 'light';
@@ -13,13 +9,9 @@ const THEME_DARK = 'dark';
  * @returns {string} 'dark' if dark mode is preferred, otherwise 'light'
  */
 const getSystemTheme = () => {
-  if (
-    typeof window !== 'undefined' &&
-    window.matchMedia &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches
-  ) {
-    return THEME_DARK;
-  }
+  const prefersDark = window?.matchMedia('(prefers-color-scheme: dark)')?.matches;
+  
+  if (prefersDark) { return THEME_DARK; }
   return THEME_LIGHT;
 };
 
@@ -60,7 +52,7 @@ const setStoredTheme = (theme) => {
  */
 const applyTheme = (theme) => {
   if (typeof document === 'undefined') { return; }
-  
+
   document.documentElement.dataset.theme = theme;
 };
 
