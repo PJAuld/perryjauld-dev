@@ -195,7 +195,6 @@
       transition: background-color var(--transition-link), backdrop-filter var(--transition-link);
 
       &:hover {
-        background-color: var(--glass-bg-hover);
         backdrop-filter: var(--glass-blur-hover);
         text-decoration: none; /* Remove underline */
       }

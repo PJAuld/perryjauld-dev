@@ -12,7 +12,7 @@
 	const projects = [
 		{
 			title: 'Personal Website',
-			description: `This personal website built with SvelteKit, featuring a
+			description: `This site built with SvelteKit, featuring a
 					blog and portfolio showcase.`,
 			tech: ['SvelteKit', 'JavaScript', 'SCSS'],
 			link: 'https://github.com/PJAuld/perryjauld-dev'
@@ -23,7 +23,7 @@
 <main>
 	<h1>Portfolio</h1>
 	
-	<p>Here are some of my projects and work:</p>
+	<p>Here are some of my projects, work, and experiments:</p>
 	
 	<div class="projects-grid">
 		{#each projects as project}

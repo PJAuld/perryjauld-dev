@@ -1,109 +1,20 @@
 ---
-title: "Welcome to My Blog"
-date: "2026-02-13"
-excerpt: "The first post on my new personal website"
+title: "Hello World!"
+date: "2026-02-23"
+excerpt: "The very first post"
 ---
 
-This is my first blog post on my new personal website! I'm looking forward to sharing my thoughts, projects, and experiments here.
+The classic phrased used by every programmer for something new, "Hello World!" And here indeed is something new: my own site and showcase.
 
-## What to Expect
+It's been too long coming. I bought the domain perryjauld.dev years ago when the .dev top level domain was first introduced, with this very goal. I wanted to finally branch out into "real" web development, and start building sites and apps. Well, some 7 years later and I finally have my first basic site up 😅.
 
-I'll be writing about:
+The best time to plant a tree is 20 years ago. The second best time is right now.
 
-- Whatever I feel like writting about
+So here we finally are. I intend to use this site as a launching ground for little experiments, trying things out, and learning. I'll also post periodically and you can read my opinions if you want. I plan to post just about any topic that I think about: being a father of 3, web development, NetSuite development, current events, cooking, the NFL, fantasy football, games, rabbits; whatever I feel like putting out there.
 
-Here's a bunch of long text to mimic scrolling:
+This particular site is built with SvelteKit, and was a fun experiment in both learning that and learning to better use AI to code. Indeed, this was built using GitHub Copilot and I wouldn't blame you for thinking less of it now. But the reality for me in my current season of life is I'm very short on time. I feel like I'm at a place where I _could_ learn all this by myself and build it, but it would take even longer than the procrastinating to even get started. AI can be a fantastic tool, but it is a tool. My boss told me a wonderful analogy:
+> AI is a chainsaw. Before it, developers were lumberjacks with axes: chopping away at a tree one swing at a time. Now they can cut it down a lot faster.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-vehicula, nisl a facilisis tincidunt, augue sapien varius lectus, sed
-fringilla justo nunc non orci.
+I like this analogy, and think you could continue to run with it if you want. Everyone has their own preference of axe (programming language) and method for cutting (programming paradigm). And the chainsaw has emboldened a lot of non-lumberjacks to try cutting down trees (vibe coding). And if you're not careful or don't know what you're doing already, you'll chop your hands off. So while it does lower the barrier to entry significantly, the safest hands are still the lumberjack's (and the ones still attached to your arms).
 
-Nulla facilisi. Integer vitae sapien sit amet mauris tempor convallis.
-Aliquam erat volutpat.
-
-Pellentesque habitant morbi tristique senectus et netus et malesuada
-fames ac turpis egestas. Curabitur at risus eu lorem convallis
-suscipit.
-
-Vivamus euismod, lectus non tincidunt dictum, nunc nisl faucibus
-quam, quis pretium purus lacus a justo. Cras tincidunt, nibh sit amet
-scelerisque efficitur, sapien lorem gravida lorem, non malesuada nibh
-erat id odio.
-
-Maecenas vitae sapien ut urna sodales fermentum. Sed in augue sed
-dolor dictum gravida. Phasellus in augue vitae elit interdum dictum.
-
-Proin sit amet arcu ut purus consequat aliquet. Donec vitae sapien at
-nisl efficitur tincidunt. Integer dictum, erat a luctus faucibus, sem
-quam bibendum arcu, non tempor nibh ipsum nec lorem.
-
-Suspendisse potenti. Mauris nec risus a turpis luctus pharetra. Nam
-vitae mi vitae dolor vehicula tincidunt.
-
-Etiam accumsan, orci sed bibendum bibendum, metus augue faucibus
-nibh, at dapibus massa felis nec mi. Nulla ut augue a massa rutrum
-mollis.
-
-Curabitur vitae turpis eu tortor vulputate fermentum. Vivamus
-pellentesque, augue eget accumsan tincidunt, nunc orci consectetur
-justo, in egestas ipsum lorem at erat.
-
-Integer vel lectus sed urna hendrerit vulputate. Sed sit amet ligula
-nec lacus maximus volutpat. Aliquam molestie turpis ac dui
-consequat, in dictum lorem vulputate.
-
-Fusce ac nisl in nisl imperdiet ullamcorper. Vestibulum ante ipsum
-primis in faucibus orci luctus et ultrices posuere cubilia curae;
-Integer et justo vitae nibh condimentum tincidunt.
-
-Morbi quis eros sed erat fermentum posuere. Duis dapibus, nibh eu
-volutpat dictum, justo lacus suscipit nibh, at ultricies mi nibh vel
-quam.
-
-Nunc sed urna ac tortor sagittis tincidunt. Donec ut nibh vel magna
-mollis tincidunt. Cras et lectus non ipsum sollicitudin interdum.
-
-Suspendisse id turpis sit amet odio feugiat bibendum. Phasellus sed
-tortor et nunc feugiat consectetur. Vestibulum id nibh sed sapien
-interdum placerat.
-
-Aliquam tincidunt, lacus a tristique efficitur, arcu elit fermentum
-massa, vitae pretium eros neque a lectus. Sed venenatis sem non eros
-ullamcorper, eget volutpat nibh tempor.
-
-Praesent vulputate lectus eget nulla tincidunt, sed aliquet ipsum
-consequat. Integer quis nibh non arcu tristique pharetra.
-
-Vestibulum suscipit, nibh sed fermentum gravida, lorem turpis
-malesuada velit, vitae egestas arcu neque sit amet nunc. Fusce
-aliquet orci id dolor tempus, at porta mi cursus.
-
-Nullam euismod justo vitae elit convallis, sed tristique mi
-vulputate. Morbi a ligula sed mauris convallis vulputate.
-
-Phasellus sit amet mauris et lorem tempor faucibus. Proin sed augue
-at lectus tincidunt efficitur. Cras feugiat ligula non lorem
-ultricies, nec sollicitudin lectus scelerisque.
-
-Sed fermentum, augue quis facilisis posuere, nibh lacus tincidunt
-sapien, ac gravida lectus augue id odio. Integer id purus nec nunc
-lobortis posuere.
-
-Donec consequat, sapien id consequat rhoncus, lorem urna aliquet
-massa, quis tempor justo turpis at nunc. Nam congue ipsum non velit
-viverra, in sodales nisl dictum.
-
-Curabitur facilisis urna sed dui vehicula, a hendrerit sapien
-fringilla. Aenean non magna at velit maximus consequat.
-
-In hac habitasse platea dictumst. Suspendisse luctus placerat sapien,
-in pulvinar lorem efficitur in. Vivamus sit amet sem vitae sapien
-malesuada volutpat.
-
-Quisque eget nisl eu odio vestibulum volutpat. Sed vitae nunc sed
-tellus tincidunt facilisis. Nulla facilisi.
-
-Morbi finibus mauris non ipsum lacinia, ut euismod augue mollis.
-Vestibulum ante ipsum primis in faucibus orci luctus et ultrices
-posuere cubilia curae; Donec sit amet lorem nec augue faucibus
-fermentum.
+So I will continue to post new things, new experiments, and new thoughts here. Most will be coded using AI to speed things up, and always having the AI explaing what it's doing so I continue to learn. My goal is to only post things that I understand and could build without AI, given enough time and a sharp enough axe. I'll eventually add more things that make this blog feel more bloggy, and easier to separate the various topics I may ramble on. Until then, feel free to stop by from time to time.

@@ -169,7 +169,7 @@ body {
 }
 
 html {
-	background-image: var(--background-image); /* Static background image */
+	background-color: #FFFFFF;
 	background-attachment: fixed; /* Image doesn't scroll with content */
 	background-position: center; /* Center image in viewport */
 	background-repeat: no-repeat; /* Prevent tiling */
@@ -178,7 +178,7 @@ html {
 
 /* Dark mode background - fade to black instead of light image */
 [data-theme="dark"] html {
-	background-color: #000;
+	background-color: #000000;
 	background-image: none;
 }
 
