@@ -15,6 +15,7 @@
   // Reactive state for the background video source URL
   let backgroundVideoSrc = $state(''); // initialized empty; set on mount
   let currentTheme = $state(THEME_LIGHT); // initialized to light; updated on mount
+  let isMobile = $state(false); // Track if device is mobile
   let { children } = $props(); // slot content
 
   /**
@@ -33,6 +34,9 @@
 
     // Read initial theme from data-theme attribute set by app.html script
     currentTheme = document.documentElement.dataset.theme || THEME_LIGHT;
+
+    // Detect mobile and apply blur immediately to prevent flash
+    isMobile = window.innerWidth <= 768;
   });
 
   /**
@@ -73,6 +77,7 @@
 
 <video
   class="background-video"
+  style={isMobile ? 'filter: blur(2px);' : ''}
   autoplay
   muted
   loop
@@ -161,6 +166,8 @@
     left: 0;
     height: var(--layout-header-height);
     width: var(--layout-sidebar-width);
+    will-change: auto; /* Hint for browser optimization */
+    view-transition-name: none; /* Exclude from view transitions */
   }
 
   /* Main navigation sidebar. */
@@ -178,6 +185,8 @@
     height: calc(100vh - var(--layout-sidebar-offset)); /* Full height minus top spacing */
     width: var(--layout-sidebar-width);
     padding: var(--spacing-md);
+    will-change: auto; /* Hint for browser optimization */
+    view-transition-name: none; /* Exclude from view transitions */
 
     ul {
       display: flex;
@@ -214,6 +223,7 @@
     margin-bottom: var(--layout-gap-sm); /* Gap before body content */
     margin-left: var(--layout-content-offset); /* Aligns with nav bar width plus gap */
     position: relative; /* For absolutely positioned toggle button */
+    view-transition-name: none; /* Exclude from view transitions */
   }
 
   /* Main body containing all page content. */
@@ -240,10 +250,7 @@
 
   /* Mobile responsive for small screens. */
   @media (max-width: 768px) {
-    /* Keep background video but optimize for mobile with blur */
-    .background-video {
-      filter: blur(2px);
-    }
+    /* Background video blur applied inline via JavaScript to prevent flash */
 
     /* Adjust overlay for better mobile readability */
     .video-overlay {
