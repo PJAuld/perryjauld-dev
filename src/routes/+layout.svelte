@@ -1,6 +1,6 @@
 <!-- Root Layout Component -->
 <script>
-  import { onMount } from 'svelte';
+  import { onMount, tick } from 'svelte';
   import { onNavigate } from '$app/navigation';
   import favicon from '$lib/assets/favicon.svg';
   import ThemeToggle from '$lib/components/theme_toggle.svelte';
@@ -15,7 +15,7 @@
   // Reactive state for the background video source URL
   let backgroundVideoSrc = $state(''); // initialized empty; set on mount
   let currentTheme = $state(THEME_LIGHT); // initialized to light; updated on mount
-  let isMobile = $state(false); // Track if device is mobile
+  let videoElement = $state(null); // ref to video element for manual playback control
   let { children } = $props(); // slot content
 
   /**
@@ -23,7 +23,7 @@
    *     and sets as the background video source.
    * Also initializes the theme state from the data-theme attribute.
    */
-  onMount(() => {
+  onMount(async () => {
     const rootStyles = getComputedStyle(document.documentElement);
     const rawSrc = rootStyles.getPropertyValue('--background-video').trim();
 
@@ -35,8 +35,13 @@
     // Read initial theme from data-theme attribute set by app.html script
     currentTheme = document.documentElement.dataset.theme || THEME_LIGHT;
 
-    // Detect mobile and apply blur immediately to prevent flash
-    isMobile = window.innerWidth <= 768;
+    // Wait for Svelte to update the DOM with the new source, then trigger
+    // playback so iOS Safari picks up the dynamically inserted source element
+    await tick();
+    if (videoElement) {
+      videoElement.load();
+      videoElement.play().catch(() => {});
+    }
   });
 
   /**
@@ -76,8 +81,8 @@
 </svelte:head>
 
 <video
+  bind:this={videoElement}
   class="background-video"
-  style={isMobile ? 'filter: blur(2px);' : ''}
   autoplay
   muted
   loop
@@ -250,7 +255,10 @@
 
   /* Mobile responsive for small screens. */
   @media (max-width: 768px) {
-    /* Background video blur applied inline via JavaScript to prevent flash */
+    /* Apply blur via CSS so it takes effect immediately without waiting for JS */
+    .background-video {
+      filter: blur(2px);
+    }
 
     /* Adjust overlay for better mobile readability */
     .video-overlay {
