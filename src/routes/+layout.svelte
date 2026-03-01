@@ -105,7 +105,6 @@
     pointer-events: none; /* Prevents interaction with video */
     z-index: var(--z-index-background); /* Places video behind all content */
     animation: video-fade var(--animation-video-fade) ease-in-out infinite;
-    view-transition-name: background-video; /* Isolates video in its own view-transition layer to maintain visibility during navigation */
 
     @media (prefers-reduced-motion: reduce) {
       display: none;
@@ -149,7 +148,7 @@
     height: var(--layout-header-height);
     width: var(--layout-sidebar-width);
     will-change: auto; /* Hint for browser optimization */
-    view-transition-name: none; /* Exclude from view transitions */
+    view-transition-name: home-icon; /* Captured as pre-blurred bitmap to prevent backdrop-filter flash during navigation */
   }
 
   /* Main navigation sidebar. */
@@ -168,7 +167,7 @@
     width: var(--layout-sidebar-width);
     padding: var(--spacing-md);
     will-change: auto; /* Hint for browser optimization */
-    view-transition-name: none; /* Exclude from view transitions */
+    view-transition-name: nav-bar; /* Captured as pre-blurred bitmap to prevent backdrop-filter flash during navigation */
 
     ul {
       display: flex;
@@ -205,7 +204,7 @@
     margin-bottom: var(--layout-gap-sm); /* Gap before body content */
     margin-left: var(--layout-content-offset); /* Aligns with nav bar width plus gap */
     position: relative; /* For absolutely positioned toggle button */
-    view-transition-name: none; /* Exclude from view transitions */
+    view-transition-name: title-banner; /* Captured as pre-blurred bitmap to prevent backdrop-filter flash during navigation */
   }
 
   /* Main body containing all page content. */
@@ -220,6 +219,7 @@
     margin-top: var(--layout-gap-md); /* Space from title banner */
     min-height: calc(100vh - var(--layout-sidebar-offset));
     height: 100%;
+    view-transition-name: body-content; /* Captured as pre-blurred bitmap to prevent backdrop-filter flash during navigation */
 
     /* Page content wrapper - target for view transitions. Match parent values */
     .page-content {
@@ -366,10 +366,16 @@
       animation-timing-function: ease-in-out;
     }
 
-    /* Keep background video visible at full opacity during navigation transitions
-       so the blur is never interrupted or faded out. */
-    ::view-transition-old(background-video),
-    ::view-transition-new(background-video) {
+    /* Glass chrome elements are captured as pre-blurred bitmaps and held
+       static throughout navigation so backdrop-filter never repaints mid-transition. */
+    ::view-transition-old(home-icon),
+    ::view-transition-new(home-icon),
+    ::view-transition-old(nav-bar),
+    ::view-transition-new(nav-bar),
+    ::view-transition-old(title-banner),
+    ::view-transition-new(title-banner),
+    ::view-transition-old(body-content),
+    ::view-transition-new(body-content) {
       animation: none;
     }
 
