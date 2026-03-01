@@ -1,6 +1,6 @@
 <!-- Root Layout Component -->
 <script>
-  import { onMount, tick } from 'svelte';
+  import { onMount } from 'svelte';
   import { onNavigate } from '$app/navigation';
   import favicon from '$lib/assets/favicon.svg';
   import ThemeToggle from '$lib/components/theme_toggle.svelte';
@@ -12,36 +12,15 @@
   } from '$lib/utils/theme.js';
   import './styles.scss';
 
-  // Reactive state for the background video source URL
-  let backgroundVideoSrc = $state(''); // initialized empty; set on mount
   let currentTheme = $state(THEME_LIGHT); // initialized to light; updated on mount
-  let videoElement = $state(null); // ref to video element for manual playback control
   let { children } = $props(); // slot content
 
   /**
-   * Reads the --background-video CSS variable, parses the URL,
-   *     and sets as the background video source.
-   * Also initializes the theme state from the data-theme attribute.
+   * Initializes the theme state from the data-theme attribute set by app.html.
    */
-  onMount(async () => {
-    const rootStyles = getComputedStyle(document.documentElement);
-    const rawSrc = rootStyles.getPropertyValue('--background-video').trim();
-
-    // Extract URL from CSS variable; may be in url('...') format
-    const STRING_IN_URL_TAG = /^url\(['"]?(.+?)['"]?\)$/;
-    const match = rawSrc.match(STRING_IN_URL_TAG);
-    backgroundVideoSrc = match ? match[1] : rawSrc;
-
+  onMount(() => {
     // Read initial theme from data-theme attribute set by app.html script
     currentTheme = document.documentElement.dataset.theme || THEME_LIGHT;
-
-    // Wait for Svelte to update the DOM with the new source, then trigger
-    // playback so iOS Safari picks up the dynamically inserted source element
-    await tick();
-    if (videoElement) {
-      videoElement.load();
-      videoElement.play().catch(() => {});
-    }
   });
 
   /**
@@ -81,7 +60,6 @@
 </svelte:head>
 
 <video
-  bind:this={videoElement}
   class="background-video"
   autoplay
   muted
@@ -90,9 +68,7 @@
   aria-hidden="true"
   poster="/media/background-image.jpeg"
 >
-  {#if backgroundVideoSrc}
-    <source src={backgroundVideoSrc} type="video/mp4" />
-  {/if}
+  <source src="/media/rocky-coast.mp4" type="video/mp4" />
 </video>
 
 <div class="video-overlay" aria-hidden="true"></div>
@@ -129,6 +105,7 @@
     pointer-events: none; /* Prevents interaction with video */
     z-index: var(--z-index-background); /* Places video behind all content */
     animation: video-fade var(--animation-video-fade) ease-in-out infinite;
+    view-transition-name: background-video; /* Isolates video in its own view-transition layer to maintain visibility during navigation */
 
     @media (prefers-reduced-motion: reduce) {
       display: none;
@@ -387,6 +364,13 @@
       animation-duration: var(--transition-view-duration);
       animation-delay: var(--transition-view-duration);
       animation-timing-function: ease-in-out;
+    }
+
+    /* Keep background video visible at full opacity during navigation transitions
+       so the blur is never interrupted or faded out. */
+    ::view-transition-old(background-video),
+    ::view-transition-new(background-video) {
+      animation: none;
     }
 
     @keyframes fade-out {
