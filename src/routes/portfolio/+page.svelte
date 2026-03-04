@@ -57,7 +57,6 @@
 	
 	/* Project card with glassmorphism design. */
 	.project-card {
-		@include glass-card;
 		padding: var(--spacing-card);
 		
 		h3 {
@@ -72,7 +71,7 @@
 		.tech-tags {
 			display: flex;
 			flex-wrap: wrap; /* Allow tags to wrap to next line */
-			gap: var(--spacing-tag);
+			gap: var(--spacing-xs);
 			margin-bottom: var(--spacing-sm);
 		}
 		
@@ -88,7 +87,7 @@
 		
 		a {
 			display: inline-block; /* Allow margin spacing */
-			margin-top: var(--spacing-tag); /* Small space from tech tags */
+			margin-top: var(--spacing-xs); /* Small space from tech tags */
 			font-weight: 600; /* Semi-bold for emphasis */
 		}
 	}
