@@ -166,7 +166,6 @@
     left: 0;
     height: var(--layout-header-height);
     width: var(--layout-sidebar-width);
-    will-change: auto; /* Hint for browser optimization */
     view-transition-name: none; /* Exclude from view transitions */
   }
 
@@ -185,7 +184,6 @@
     height: calc(100vh - var(--layout-sidebar-offset)); /* Full height minus top spacing */
     width: var(--layout-sidebar-width);
     padding: var(--spacing-md);
-    will-change: auto; /* Hint for browser optimization */
     view-transition-name: none; /* Exclude from view transitions */
 
     ul {
@@ -258,7 +256,7 @@
     }
 
     .layout-container {
-      min-height: calc(100vh - 78px); /* Full height minus nav bar */
+      min-height: calc(100vh - var(--layout-mobile-nav-height)); /* Full height minus nav bar */
     }
     
     /* Maintain glassmorphism with more translucent background */
@@ -276,8 +274,8 @@
       border-top-right-radius: var(--corner-rounding);
       box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
       margin-left: 0; /* Full width */
-      margin-top: 78px; /* Align with new nav height */
-      min-height: calc(100vh - 79px); /* Full height minus nav bar */
+      margin-top: var(--layout-mobile-nav-height); /* Align below nav bar */
+      min-height: calc(100vh - var(--layout-mobile-nav-height)); /* Full height minus nav bar */
 
       .page-content {
         border-top-left-radius: var(--corner-rounding);
@@ -292,18 +290,6 @@
     /* Repurpose title banner as subtle gradient accent bar */
     .title-banner {
       display: none;
-      backdrop-filter: none;
-      -webkit-backdrop-filter: none;
-      background: linear-gradient(90deg, transparent, var(--color-primary), var(--color-secondary), transparent);
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-      height: 4px;
-      margin: 0;
-      position: fixed;
-      top: 72px;
-      width: 100%;
-      z-index: 2;
     }
 
     .nav-bar {
@@ -314,10 +300,10 @@
       border-bottom-right-radius: var(--corner-rounding);
       border-top-right-radius: 0;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-      padding: 16px 20px;
+      padding: var(--spacing-sm) var(--layout-gap-md);
       position: fixed;
       top: 0;
-      height: 72px;
+      height: var(--layout-mobile-nav-height);
       width: 100%;
       z-index: var(--z-index-content);
       
