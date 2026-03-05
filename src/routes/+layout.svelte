@@ -83,11 +83,9 @@
   loop
   playsinline
   aria-hidden="true"
-  poster="/media/background-image.jpeg"
+  poster="/media/rocky-coast.jpeg"
 >
-  {#if backgroundVideoSrc}
-    <source src={backgroundVideoSrc} type="video/mp4" />
-  {/if}
+  <source src="/media/rocky-coast.mp4" type="video/mp4" />
 </video>
 
 <div class="video-overlay" aria-hidden="true"></div>
@@ -123,18 +121,10 @@
     object-fit: cover; /* Ensures video fills container while maintaining aspect ratio */
     pointer-events: none; /* Prevents interaction with video */
     z-index: var(--z-index-background); /* Places video behind all content */
-    animation: video-fade var(--animation-video-fade) ease-in-out infinite;
 
     @media (prefers-reduced-motion: reduce) {
       display: none;
     }
-  }
-
-  @keyframes video-fade {
-    0% { opacity: 0; }
-    3% { opacity: 1; }
-    97% { opacity: 1; }
-    100% { opacity: 0; } 
   }
 
   /* Adds subtle darkening to improve text readability and create depth. */
@@ -244,7 +234,7 @@
       border-top-left-radius: var(--corner-rounding);
       height: 100%;
       min-height: inherit;
-      view-transition-name: main-content; /* Enable view transitions */
+      // view-transition-name: main-content; /* Enable view transitions */
     }
   }
 
