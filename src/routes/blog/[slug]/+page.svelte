@@ -65,7 +65,7 @@
 			/* Code blocks */
 			:global(pre) {
 				background: var(--color-code-bg);
-				border-radius: var(--radius-code-block);
+				border-radius: var(--radius-code);
 				margin: var(--spacing-sm) 0;
 				overflow-x: auto; /* Horizontal scroll for long lines */
 				padding: var(--spacing-sm);

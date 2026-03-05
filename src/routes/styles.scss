@@ -41,8 +41,7 @@
 	/* Border radius */
 	--radius-card: 12px;
 	--radius-tag: 4px;
-	--radius-code: 3px;
-	--radius-code-block: 4px;
+	--radius-code: 4px;
 
 	/* Font sizes */
 	--font-size-hero: 4rem;
@@ -51,13 +50,10 @@
 	--font-size-code: 0.9em;
 
 	/* Spacing - extended */
-	--spacing-xxs: 0.25rem;
-	--spacing-tag: 0.5rem;
-	--spacing-3xs: 0.2rem;
-	--spacing-code-v: 0.2rem;
-	--spacing-code-h: 0.4rem;
 	--spacing-tag-v: 0.25rem;
 	--spacing-tag-h: 0.75rem;
+	--spacing-code-v: 0.2rem;
+	--spacing-code-h: 0.4rem;
 	--spacing-card: 1.5rem;
 	--spacing-xl: 3rem;
 
@@ -95,7 +91,6 @@
 	--layout-sidebar-offset: 110px; /* header height + gap */
 	--layout-content-offset: 210px; /* sidebar width + gap */
 	--layout-mobile-nav-height: 80px;
-	--layout-mobile-content-offset: 82px;
 
 	/* Layout - Other */
 	--video-overlay-bg: rgba(0, 0, 0, 0.15);
@@ -226,8 +221,8 @@ a {
 	}
 }
 
-/* Shared card styles with glassmorphism effect */
-@mixin glass-card {
+/* Utility class for glass card styling */
+.glass-card {
 	backdrop-filter: blur(var(--card-blur));
 	-webkit-backdrop-filter: blur(var(--card-blur));
 	background: var(--card-bg);
@@ -241,9 +236,4 @@ a {
 		box-shadow: var(--shadow-card-hover);
 		border-color: var(--card-border-hover);
 	}
-}
-
-/* Utility class for glass card styling */
-.glass-card {
-	@include glass-card;
 }

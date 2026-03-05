@@ -32,7 +32,6 @@
 
 		/* Card-style layout with glassmorphism design. */
 		.blog-item {
-			@include glass-card;
 			margin-bottom: var(--spacing-md);
 			padding: var(--spacing-md);
 
