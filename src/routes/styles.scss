@@ -59,9 +59,9 @@
 
 	/* Transitions */
 	--transition-duration: 0.3s;
-	--transition-card: all 0.3s ease;
+	--transition-card: all 0.3s ease-in-out;
 	--transition-link: 0.2s;
-	--transition-view-duration: 0.15s;
+	--transition-view-duration: 0.25s;
 
 	/* Glassmorphism - Backgrounds */
 	--glass-bg-light: rgba(255, 255, 255, 0.20);

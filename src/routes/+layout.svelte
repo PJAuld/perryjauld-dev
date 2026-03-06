@@ -226,13 +226,12 @@
     margin-top: var(--layout-gap-md); /* Space from title banner */
     min-height: calc(100vh - var(--layout-sidebar-offset));
     height: 100%;
-
+    
     /* Page content wrapper - target for view transitions. Match parent values */
     .page-content {
       border-top-left-radius: var(--corner-rounding);
       height: 100%;
       min-height: inherit;
-      // view-transition-name: main-content; /* Enable view transitions */
     }
   }
 
@@ -339,30 +338,6 @@
         border-right: 1px solid rgba(0, 0, 0, 0.3);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
       }
-    }
-  }
-
-  /* View transition animations */
-  @media (prefers-reduced-motion: no-preference) {
-    ::view-transition-old(main-content) {
-      animation-name: fade-out;
-      animation-duration: var(--transition-view-duration);
-      animation-timing-function: ease-in-out;
-    }
-
-    ::view-transition-new(main-content) {
-      animation-name: fade-in;
-      animation-duration: var(--transition-view-duration);
-      animation-delay: var(--transition-view-duration);
-      animation-timing-function: ease-in-out;
-    }
-
-    @keyframes fade-out {
-      to { opacity: 0; }
-    }
-
-    @keyframes fade-in {
-      from { opacity: 0; }
     }
   }
 </style>
