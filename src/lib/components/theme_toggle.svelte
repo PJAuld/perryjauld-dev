@@ -61,6 +61,7 @@
     position: absolute;
     bottom: 12px;
     right: 16px;
+    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
     transition: all var(--transition-duration) ease;
 
     &:hover {

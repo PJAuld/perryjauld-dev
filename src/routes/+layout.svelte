@@ -151,6 +151,7 @@
     border-bottom: 1px solid var(--glass-border-medium); /* Subtle border for definition */
     border-bottom-right-radius: var(--corner-rounding); /* Custom organic corner shape */
     box-shadow: var(--glass-shadow-default);
+    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
     position: fixed; /* Stays in place during scroll */
     top: 0;
     left: 0;
@@ -168,6 +169,7 @@
     border-top-right-radius: var(--corner-rounding); /* Organic corner shape */
     box-shadow: var(--glass-shadow-nav);
     color: var(--color-text);
+    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
     position: fixed; /* Sidebar stays visible during scroll */
     top: var(--layout-sidebar-offset); /* Below home icon plus gap */
     left: 0;
@@ -207,6 +209,7 @@
     border-left: 1px solid var(--glass-border-medium);
     border-bottom-left-radius: var(--corner-rounding);
     box-shadow: var(--glass-shadow-default);
+    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
     height: var(--layout-header-height);
     margin-bottom: var(--layout-gap-sm); /* Gap before body content */
     margin-left: var(--layout-content-offset); /* Aligns with nav bar width plus gap */
@@ -222,6 +225,7 @@
     border-left: 1px solid var(--glass-border-light);
     border-top-left-radius: var(--corner-rounding);
     box-shadow: var(--glass-shadow-body);
+    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
     margin-left: var(--layout-content-offset); /* Offset by nav bar width */
     margin-top: var(--layout-gap-md); /* Space from title banner */
     min-height: calc(100vh - var(--layout-sidebar-offset));
