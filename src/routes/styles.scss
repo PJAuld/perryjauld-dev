@@ -77,11 +77,15 @@
 	--glass-blur-light: blur(10px) saturate(180%);
 	--glass-blur-heavy: blur(20px) saturate(180%);
 	--glass-blur-hover: blur(10px);
+	--glass-blur-mobile: blur(12px) saturate(150%);
+	--glass-blur-mobile-hover: blur(15px);
 
 	/* Glassmorphism - Box Shadows */
 	--glass-shadow-default: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 	--glass-shadow-nav: 2px 0 10px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 	--glass-shadow-body: -4px 0 20px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+	--glass-shadow-mobile-body: 0 -4px 20px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+	--glass-shadow-mobile-nav: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
 
 	/* Layout - Dimensions */
 	--layout-header-height: 90px;
@@ -94,10 +98,12 @@
 
 	/* Layout - Other */
 	--video-overlay-bg: rgba(0, 0, 0, 0.15);
+	--video-overlay-mobile-bg: rgba(0, 0, 0, 0.25);
 	--animation-video-fade: 24.5s;
 	--z-index-background: 0;
 	--z-index-content: 1;
 	--radius-link: 4px;
+	--radius-mobile-nav-link: 8px;
 	--padding-link-left: 1.5rem;
 }
 
@@ -146,9 +152,12 @@
 	--glass-shadow-default: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 	--glass-shadow-nav: 2px 0 10px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 	--glass-shadow-body: -4px 0 20px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	--glass-shadow-mobile-body: 0 -4px 20px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	--glass-shadow-mobile-nav: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 
 	/* Layout - Other */
 	--video-overlay-bg: rgba(255, 255, 255, 0.05);
+	--video-overlay-mobile-bg: rgba(255, 255, 255, 0.08);
 }
 
 /* Universal box-sizing reset. */
@@ -229,6 +238,7 @@ a {
 	border: 1px solid var(--card-border);
 	border-radius: var(--radius-card);
 	box-shadow: var(--shadow-card);
+	transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
 	transition: var(--transition-card);
 
 	&:hover {

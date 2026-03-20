@@ -151,6 +151,7 @@
     border-bottom: 1px solid var(--glass-border-medium); /* Subtle border for definition */
     border-bottom-right-radius: var(--corner-rounding); /* Custom organic corner shape */
     box-shadow: var(--glass-shadow-default);
+    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
     position: fixed; /* Stays in place during scroll */
     top: 0;
     left: 0;
@@ -168,6 +169,7 @@
     border-top-right-radius: var(--corner-rounding); /* Organic corner shape */
     box-shadow: var(--glass-shadow-nav);
     color: var(--color-text);
+    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
     position: fixed; /* Sidebar stays visible during scroll */
     top: var(--layout-sidebar-offset); /* Below home icon plus gap */
     left: 0;
@@ -207,6 +209,7 @@
     border-left: 1px solid var(--glass-border-medium);
     border-bottom-left-radius: var(--corner-rounding);
     box-shadow: var(--glass-shadow-default);
+    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
     height: var(--layout-header-height);
     margin-bottom: var(--layout-gap-sm); /* Gap before body content */
     margin-left: var(--layout-content-offset); /* Aligns with nav bar width plus gap */
@@ -222,6 +225,7 @@
     border-left: 1px solid var(--glass-border-light);
     border-top-left-radius: var(--corner-rounding);
     box-shadow: var(--glass-shadow-body);
+    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
     margin-left: var(--layout-content-offset); /* Offset by nav bar width */
     margin-top: var(--layout-gap-md); /* Space from title banner */
     min-height: calc(100vh - var(--layout-sidebar-offset));
@@ -241,7 +245,7 @@
 
     /* Adjust overlay for better mobile readability */
     .video-overlay {
-      background: rgba(0, 0, 0, 0.25);
+      background: var(--video-overlay-mobile-bg);
     }
 
     .layout-container {
@@ -250,20 +254,19 @@
     
     /* Maintain glassmorphism with more translucent background */
     .body-content, .nav-bar {
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(12px) saturate(150%);
-      -webkit-backdrop-filter: blur(12px) saturate(150%);
+      background: var(--color-bg-secondary);
+      backdrop-filter: var(--glass-blur-mobile);
+      -webkit-backdrop-filter: var(--glass-blur-mobile);
     }
 
     .body-content {
-      border-left: 1px solid rgba(255, 255, 255, 0.2);
-      border-right: 1px solid rgba(255, 255, 255, 0.2);
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      border-left: 1px solid var(--glass-border-light);
+      border-right: 1px solid var(--glass-border-light);
+      border-top: 1px solid var(--glass-border-light);
       border-top-left-radius: var(--corner-rounding);
-      border-top-right-radius: var(--corner-rounding);
-      box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+      box-shadow: var(--glass-shadow-mobile-body);
       margin-left: 0; /* Full width */
-      margin-top: var(--layout-mobile-nav-height); /* Align below nav bar */
+      margin-top: calc(var(--layout-mobile-nav-height) + var(--layout-gap-sm)); /* Align below nav bar */
       min-height: calc(100vh - var(--layout-mobile-nav-height)); /* Full height minus nav bar */
 
       .page-content {
@@ -282,13 +285,12 @@
     }
 
     .nav-bar {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-      border-left: 1px solid rgba(255, 255, 255, 0.2);
-      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 1px solid var(--glass-border-light);
+      border-left: 1px solid var(--glass-border-light);
+      border-right: 1px solid var(--glass-border-light);
       border-bottom-left-radius: var(--corner-rounding);
-      border-bottom-right-radius: var(--corner-rounding);
       border-top-right-radius: 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+      box-shadow: var(--glass-shadow-mobile-nav);
       padding: var(--spacing-sm) var(--layout-gap-md);
       position: fixed;
       top: 0;
@@ -304,11 +306,11 @@
 
       a {
         padding: var(--spacing-xs) var(--spacing-sm);
-        border-radius: 8px;
+        border-radius: var(--radius-mobile-nav-link);
 
         &:hover {
-          backdrop-filter: blur(15px);
-          -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: var(--glass-blur-mobile-hover);
+          -webkit-backdrop-filter: var(--glass-blur-mobile-hover);
         }
       }
     }
@@ -318,25 +320,25 @@
   @media (max-width: 768px) {
     :global([data-theme="dark"]) {
       .video-overlay {
-        background: rgba(255, 255, 255, 0.08);
+        background: var(--video-overlay-mobile-bg);
       }
 
       .body-content, .nav-bar {
-        background: rgba(0, 0, 0, 0.65);
+        background: var(--color-bg-secondary);
       }
 
       .body-content {
-        border-left: 1px solid rgba(0, 0, 0, 0.3);
-        border-right: 1px solid rgba(0, 0, 0, 0.3);
-        border-top: 1px solid rgba(0, 0, 0, 0.3);
-        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        border-left: 1px solid var(--color-border);
+        border-right: 1px solid var(--color-border);
+        border-top: 1px solid var(--color-border);
+        box-shadow: var(--glass-shadow-mobile-body);
       }
 
       .nav-bar {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
-        border-left: 1px solid rgba(0, 0, 0, 0.3);
-        border-right: 1px solid rgba(0, 0, 0, 0.3);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid var(--color-border);
+        border-left: 1px solid var(--color-border);
+        border-right: 1px solid var(--color-border);
+        box-shadow: var(--glass-shadow-mobile-nav);
       }
     }
   }
