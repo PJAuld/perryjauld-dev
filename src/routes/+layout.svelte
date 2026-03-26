@@ -3,7 +3,10 @@
   import { onMount } from 'svelte';
   import { onNavigate } from '$app/navigation';
   import favicon from '$lib/assets/favicon.svg';
-  import ThemeToggle from '$lib/components/theme_toggle.svelte';
+  import BodyContent from '$lib/components/body_content.svelte';
+  import HomeIcon from '$lib/components/home_icon.svelte';
+  import NavBar from '$lib/components/nav_bar.svelte';
+  import TitleBanner from '$lib/components/title_banner.svelte';
   import {
     THEME_DARK,
     THEME_LIGHT,
@@ -91,31 +94,18 @@
 <div class="video-overlay" aria-hidden="true"></div>
 
 <div class="layout-container">
-  <div class="home-icon"></div>
-
-  <nav class="nav-bar">
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="/portfolio">Portfolio</a></li>
-    </ul>
-  </nav>
-
-  <div class="title-banner">
-    <ThemeToggle currentTheme={currentTheme} onToggle={toggleTheme} />
-  </div>
-
-  <div class="body-content">
-    <div class="page-content">
-      {@render children()}
-    </div>
-  </div>
+  <HomeIcon />
+  <NavBar />
+  <TitleBanner {currentTheme} onToggle={toggleTheme} />
+  <BodyContent>
+    {@render children()}
+  </BodyContent>
 </div>
 
 <style lang="scss">
   .background-video {
     position: fixed; /* Stays fixed in the viewport */
-    inset: 0; 
+    inset: 0;
     height: 100%;
     width: 100%; 
     object-fit: cover; /* Ensures video fills container while maintaining aspect ratio */
@@ -143,106 +133,8 @@
     min-height: 100vh; /* Ensures layout fills viewport even with minimal content */
   }
 
-  /* Decorative home icon area in the top-left corner. */
-  .home-icon {
-    background: var(--glass-bg-light);
-    backdrop-filter: var(--glass-blur-light); /* Creates frosted glass effect */
-    -webkit-backdrop-filter: var(--glass-blur-light); /* Safari support */
-    border-bottom: 1px solid var(--glass-border-medium); /* Subtle border for definition */
-    border-bottom-right-radius: var(--corner-rounding); /* Custom organic corner shape */
-    box-shadow: var(--glass-shadow-default);
-    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
-    position: fixed; /* Stays in place during scroll */
-    top: 0;
-    left: 0;
-    height: var(--layout-header-height);
-    width: var(--layout-sidebar-width);
-    view-transition-name: none; /* Exclude from view transitions */
-  }
-
-  /* Main navigation sidebar. */
-  .nav-bar {
-    background: var(--glass-bg-medium);
-    backdrop-filter: var(--glass-blur-heavy); /* Frosted glass blur effect */
-    -webkit-backdrop-filter: var(--glass-blur-heavy); /* Safari compatibility */
-    border-right: 1px solid var(--glass-border-light); /* Subtle separator */
-    border-top-right-radius: var(--corner-rounding); /* Organic corner shape */
-    box-shadow: var(--glass-shadow-nav);
-    color: var(--color-text);
-    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
-    position: fixed; /* Sidebar stays visible during scroll */
-    top: var(--layout-sidebar-offset); /* Below home icon plus gap */
-    left: 0;
-    height: calc(100vh - var(--layout-sidebar-offset)); /* Full height minus top spacing */
-    width: var(--layout-sidebar-width);
-    padding: var(--spacing-md);
-    view-transition-name: none; /* Exclude from view transitions */
-
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-sm);
-      list-style: none; /* Remove default bullets */
-    }
-
-    a {
-      display: block; /* Makes entire area clickable */
-      border-radius: var(--radius-link);
-      color: var(--color-text);
-      padding: var(--spacing-xs);
-      padding-left: var(--padding-link-left);
-      transition: background-color var(--transition-link), backdrop-filter var(--transition-link);
-
-      &:hover {
-        backdrop-filter: var(--glass-blur-hover);
-        text-decoration: none; /* Remove underline */
-      }
-    }
-  }
-
-  /* Decorative header space above content. */
-  .title-banner {
-    background: var(--glass-bg-light);
-    backdrop-filter: var(--glass-blur-light); /* Creates frosted glass effect */
-    -webkit-backdrop-filter: var(--glass-blur-light); /* Safari support */
-    border-bottom: 1px solid var(--glass-border-medium);
-    border-left: 1px solid var(--glass-border-medium);
-    border-bottom-left-radius: var(--corner-rounding);
-    box-shadow: var(--glass-shadow-default);
-    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
-    height: var(--layout-header-height);
-    margin-bottom: var(--layout-gap-sm); /* Gap before body content */
-    margin-left: var(--layout-content-offset); /* Aligns with nav bar width plus gap */
-    position: relative; /* For absolutely positioned toggle button */
-    view-transition-name: none; /* Exclude from view transitions */
-  }
-
-  /* Main body containing all page content. */
-  .body-content {
-    background: var(--glass-bg-medium);
-    backdrop-filter: var(--glass-blur-heavy); /* Creates frosted glass effect */
-    -webkit-backdrop-filter: var(--glass-blur-heavy); /* Safari compatibility */
-    border-left: 1px solid var(--glass-border-light);
-    border-top-left-radius: var(--corner-rounding);
-    box-shadow: var(--glass-shadow-body);
-    transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
-    margin-left: var(--layout-content-offset); /* Offset by nav bar width */
-    margin-top: var(--layout-gap-md); /* Space from title banner */
-    min-height: calc(100vh - var(--layout-sidebar-offset));
-    height: 100%;
-    
-    /* Page content wrapper - target for view transitions. Match parent values */
-    .page-content {
-      border-top-left-radius: var(--corner-rounding);
-      height: 100%;
-      min-height: inherit;
-    }
-  }
-
   /* Mobile responsive for small screens. */
   @media (max-width: 768px) {
-    /* Background video blur applied inline via JavaScript to prevent flash */
-
     /* Adjust overlay for better mobile readability */
     .video-overlay {
       background: var(--video-overlay-mobile-bg);
@@ -251,69 +143,6 @@
     .layout-container {
       min-height: calc(100vh - var(--layout-mobile-nav-height)); /* Full height minus nav bar */
     }
-    
-    /* Maintain glassmorphism with more translucent background */
-    .body-content, .nav-bar {
-      background: var(--color-bg-secondary);
-      backdrop-filter: var(--glass-blur-mobile);
-      -webkit-backdrop-filter: var(--glass-blur-mobile);
-    }
-
-    .body-content {
-      border-left: 1px solid var(--glass-border-light);
-      border-right: 1px solid var(--glass-border-light);
-      border-top: 1px solid var(--glass-border-light);
-      border-top-left-radius: var(--corner-rounding);
-      box-shadow: var(--glass-shadow-mobile-body);
-      margin-left: 0; /* Full width */
-      margin-top: calc(var(--layout-mobile-nav-height) + var(--layout-gap-sm)); /* Align below nav bar */
-      min-height: calc(100vh - var(--layout-mobile-nav-height)); /* Full height minus nav bar */
-
-      .page-content {
-        border-top-left-radius: var(--corner-rounding);
-        border-top-right-radius: var(--corner-rounding);
-      }
-    }
-
-    .home-icon {
-      display: none;
-    }
-
-    /* Repurpose title banner as subtle gradient accent bar */
-    .title-banner {
-      display: none;
-    }
-
-    .nav-bar {
-      border-bottom: 1px solid var(--glass-border-light);
-      border-left: 1px solid var(--glass-border-light);
-      border-right: 1px solid var(--glass-border-light);
-      border-bottom-left-radius: var(--corner-rounding);
-      border-top-right-radius: 0;
-      box-shadow: var(--glass-shadow-mobile-nav);
-      padding: var(--spacing-sm) var(--layout-gap-md);
-      position: fixed;
-      top: 0;
-      height: var(--layout-mobile-nav-height);
-      width: 100%;
-      z-index: var(--z-index-content);
-      
-      ul {
-        flex-direction: row; /* Stack links horizontally */
-        gap: var(--spacing-md);
-        justify-content: center; /* Center links in available space */
-      }
-
-      a {
-        padding: var(--spacing-xs) var(--spacing-sm);
-        border-radius: var(--radius-mobile-nav-link);
-
-        &:hover {
-          backdrop-filter: var(--glass-blur-mobile-hover);
-          -webkit-backdrop-filter: var(--glass-blur-mobile-hover);
-        }
-      }
-    }
   }
 
   /* Dark mode styles for mobile */
@@ -321,24 +150,6 @@
     :global([data-theme="dark"]) {
       .video-overlay {
         background: var(--video-overlay-mobile-bg);
-      }
-
-      .body-content, .nav-bar {
-        background: var(--color-bg-secondary);
-      }
-
-      .body-content {
-        border-left: 1px solid var(--color-border);
-        border-right: 1px solid var(--color-border);
-        border-top: 1px solid var(--color-border);
-        box-shadow: var(--glass-shadow-mobile-body);
-      }
-
-      .nav-bar {
-        border-bottom: 1px solid var(--color-border);
-        border-left: 1px solid var(--color-border);
-        border-right: 1px solid var(--color-border);
-        box-shadow: var(--glass-shadow-mobile-nav);
       }
     }
   }
