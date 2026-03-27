@@ -4,7 +4,7 @@
 </script>
 
 <div class="body-content">
-  <div class="page-content">
+  <div id="main-content" class="page-content">
     {@render children()}
   </div>
 </div>

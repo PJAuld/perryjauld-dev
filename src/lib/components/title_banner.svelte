@@ -1,11 +1,13 @@
 <!-- Title Banner Component -->
 <script>
+  import FontSizeToggle from '$lib/components/font_size_toggle.svelte';
   import ThemeToggle from '$lib/components/theme_toggle.svelte';
 
-  let { currentTheme, onToggle } = $props();
+  let { currentTheme, onToggle, currentFontSize, onFontSizeToggle } = $props();
 </script>
 
 <div class="title-banner">
+  <FontSizeToggle {currentFontSize} onToggle={onFontSizeToggle} />
   <ThemeToggle {currentTheme} {onToggle} />
 </div>
 

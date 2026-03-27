@@ -1,5 +1,5 @@
 <!-- Home Icon Component -->
-<div class="home-icon"></div>
+<a href="/" class="home-icon" aria-label="Go to home page"></a>
 
 <style lang="scss">
   /* Home icon area in the top-left corner. */

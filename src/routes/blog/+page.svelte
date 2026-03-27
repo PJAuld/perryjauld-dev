@@ -4,6 +4,10 @@
 	let { data } = $props();
 </script>
 
+<svelte:head>
+	<title>Blog | Perry J Auld</title>
+</svelte:head>
+
 <main>
 	<h1>Blog</h1>
 	

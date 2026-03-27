@@ -11,6 +11,12 @@
 						'dark' : 'light';
 				const theme = stored || system;
 				document.documentElement.dataset.theme = theme;
+
+				const FONT_SIZE_KEY = 'font-size-preference';
+				const storedFontSize = localStorage.getItem(FONT_SIZE_KEY);
+				if (storedFontSize) {
+					document.documentElement.setAttribute('data-font-size', storedFontSize);
+				}
 			})();
 		</script>
 		%sveltekit.head%

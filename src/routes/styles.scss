@@ -160,6 +160,15 @@
 	--video-overlay-mobile-bg: rgba(255, 255, 255, 0.08);
 }
 
+/* Font size accessibility overrides */
+[data-font-size="large"] {
+	font-size: 112.5%;
+}
+
+[data-font-size="x-large"] {
+	font-size: 125%;
+}
+
 /* Universal box-sizing reset. */
 * {
 	box-sizing: border-box; /* Include padding and border in element width/height */
@@ -227,6 +236,45 @@ a {
 	
 	&:hover {
 		text-decoration: underline; /* Visual feedback on hover */
+	}
+
+	&:focus-visible {
+		text-decoration: underline;
+	}
+}
+
+/* Global visible focus indicator */
+:focus-visible {
+	outline: 2px solid var(--color-primary);
+	outline-offset: 3px;
+	border-radius: 2px;
+}
+
+/* Skip to main content link (visually hidden until focused) */
+.skip-link {
+	background: var(--color-primary);
+	border-radius: 0 0 var(--radius-card) var(--radius-card);
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	color: #fff;
+	font-weight: 600;
+	height: 1px;
+	left: 50%;
+	overflow: hidden;
+	padding: var(--spacing-xs) var(--spacing-sm);
+	position: absolute;
+	top: 0;
+	transform: translateX(-50%);
+	white-space: nowrap;
+	width: 1px;
+	z-index: 9999;
+
+	&:focus {
+		clip: auto;
+		clip-path: none;
+		height: auto;
+		overflow: visible;
+		width: auto;
 	}
 }
 
