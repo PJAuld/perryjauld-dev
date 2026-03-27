@@ -13,18 +13,25 @@
     applyTheme,
     setStoredTheme,
   } from '$lib/utils/theme.js';
+  import {
+    FONT_SIZE_NORMAL,
+    applyFontSize,
+    nextFontSize,
+    setStoredFontSize,
+  } from '$lib/utils/font_size.js';
   import './styles.scss';
 
   // Reactive state for the background video source URL
   let backgroundVideoSrc = $state(''); // initialized empty; set on mount
   let currentTheme = $state(THEME_LIGHT); // initialized to light; updated on mount
+  let currentFontSize = $state(FONT_SIZE_NORMAL); // initialized to normal; updated on mount
   let isMobile = $state(false); // Track if device is mobile
   let { children } = $props(); // slot content
 
   /**
    * Reads the --background-video CSS variable, parses the URL,
    *     and sets as the background video source.
-   * Also initializes the theme state from the data-theme attribute.
+   * Also initializes the theme and font size state from data attributes.
    */
   onMount(() => {
     const rootStyles = getComputedStyle(document.documentElement);
@@ -37,6 +44,9 @@
 
     // Read initial theme from data-theme attribute set by app.html script
     currentTheme = document.documentElement.dataset.theme || THEME_LIGHT;
+
+    // Read initial font size from data-font-size attribute set by app.html script
+    currentFontSize = document.documentElement.getAttribute('data-font-size') || FONT_SIZE_NORMAL;
 
     // Detect mobile and apply blur immediately to prevent flash
     isMobile = window.innerWidth <= 768;
@@ -53,15 +63,28 @@
   };
 
   /**
+   * Cycles to the next font size. Saves preference to localStorage.
+   */
+  const toggleFontSize = () => {
+    const newSize = nextFontSize(currentFontSize);
+    currentFontSize = newSize;
+    applyFontSize(newSize);
+    setStoredFontSize(newSize);
+  };
+
+  /**
    * Uses View Transition API to create fade effects between pages.
-   *     If the browser doesn't support view transitions, navigation proceeds 
-   *     normally without animation.
+   *     If the browser doesn't support view transitions, or the user prefers
+   *     reduced motion, navigation proceeds normally without animation.
    * @param {Object} navigation - SvelteKit navigation object
    * @returns {Promise<void>|undefined} Promise resolving when transition completes
    */
   onNavigate((navigation) => {
     // Check if browser supports View Transition API
     if (!document.startViewTransition) return;
+
+    // Respect prefers-reduced-motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     // Wrap navigation in a view transition
     return new Promise((resolve) => {
@@ -94,9 +117,10 @@
 <div class="video-overlay" aria-hidden="true"></div>
 
 <div class="layout-container">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <HomeIcon />
   <NavBar />
-  <TitleBanner {currentTheme} onToggle={toggleTheme} />
+  <TitleBanner {currentTheme} onToggle={toggleTheme} {currentFontSize} onFontSizeToggle={toggleFontSize} />
   <BodyContent>
     {@render children()}
   </BodyContent>

@@ -1,5 +1,5 @@
 <!-- Navigation Bar Component -->
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <ul>
     <li><a href="/">Home</a></li>
     <li><a href="/blog">Blog</a></li>

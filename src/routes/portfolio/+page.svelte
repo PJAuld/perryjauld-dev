@@ -20,6 +20,10 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Portfolio | Perry J Auld</title>
+</svelte:head>
+
 <main>
 	<h1>Portfolio</h1>
 	
