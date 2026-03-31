@@ -119,7 +119,12 @@
 <div class="layout-container">
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <HomeIcon />
-  <NavBar />
+  <NavBar
+    {currentTheme}
+    onToggle={toggleTheme}
+    {currentFontSize}
+    onFontSizeToggle={toggleFontSize}
+  />
   <TitleBanner {currentTheme} onToggle={toggleTheme} {currentFontSize} onFontSizeToggle={toggleFontSize} />
   <BodyContent>
     {@render children()}
