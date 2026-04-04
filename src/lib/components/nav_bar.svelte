@@ -373,14 +373,12 @@
 
     /* Pull-down dropdown panel */
     .nav-content {
-      background: var(--color-bg-secondary);
-      backdrop-filter: var(--glass-blur-mobile);
-      -webkit-backdrop-filter: var(--glass-blur-mobile);
-      border-bottom: 1px solid var(--glass-border-light);
+      backdrop-filter: blur(24px) saturate(200%);
+      -webkit-backdrop-filter: blur(24px) saturate(200%);
+      background: rgba(245, 245, 245, 0.95);
+      border: none;
       border-bottom-left-radius: var(--corner-rounding);
-      border-left: 1px solid var(--glass-border-light);
-      border-right: 1px solid var(--glass-border-light);
-      box-shadow: var(--glass-shadow-mobile-nav);
+      border-top-left-radius: var(--corner-rounding);
       flex: none;
       gap: var(--spacing-xs);
       left: 0;
@@ -397,6 +395,10 @@
       }
 
       &.nav-content--open {
+        border-bottom: 1px solid var(--glass-border-light);
+        border-left: 1px solid var(--glass-border-light);
+        border-right: 1px solid var(--glass-border-light);
+        box-shadow: var(--glass-shadow-mobile-nav);
         max-height: 80vh;
         overflow-y: auto;
         padding: var(--spacing-sm);
@@ -426,7 +428,10 @@
       }
 
       .nav-content {
-        background: var(--color-bg-secondary);
+        background: rgba(10, 10, 10, 0.92);
+      }
+
+      .nav-content.nav-content--open {
         border-bottom: 1px solid var(--color-border);
         border-left: 1px solid var(--color-border);
         border-right: 1px solid var(--color-border);
