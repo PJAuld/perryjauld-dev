@@ -51,10 +51,8 @@
         border-top-right-radius: var(--corner-rounding);
       }
     }
-  }
 
-  /* Dark mode styles for mobile */
-  @media (max-width: 768px) {
+    /* Dark mode styles for mobile */
     :global([data-theme="dark"]) {
       .body-content {
         background: var(--color-bg-secondary);
