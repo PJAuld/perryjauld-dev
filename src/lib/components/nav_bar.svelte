@@ -68,44 +68,7 @@
     return current === path || current.startsWith(path + '/');
   };
 
-  /** Converts a URL slug into title-case label text. */
-  const formatSlug = (slug) =>
-    slug
-      .split('-')
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(' ');
-
-  /**
-   * Derives breadcrumb items from the current URL path.
-   * Uses page.data.meta.title for blog post slugs when available.
-   */
-  const breadcrumbs = $derived.by(() => {
-    const path = page.url.pathname;
-    const crumbs = [{ label: 'Home', path: '/' }];
-    if (path === '/') { return crumbs; }
-
-    const segments = path.split('/').filter(Boolean);
-    let current = '';
-
-    segments.forEach((segment) => {
-      current += '/' + segment;
-      if (current === '/blog') {
-        crumbs.push({ label: 'Blog', path: '/blog' });
-      }
-      else if (current === '/portfolio') {
-        crumbs.push({ label: 'Portfolio', path: '/portfolio' });
-      }
-      else if (current.startsWith('/blog/')) {
-        const title = page.data?.meta?.title || formatSlug(segment);
-        crumbs.push({ label: title, path: current });
-      }
-      else {
-        crumbs.push({ label: formatSlug(segment), path: current });
-      }
-    });
-
-    return crumbs;
-  });
+  const navPosts = $derived(page.data?.navPosts ?? []);
 </script>
 
 <!-- Desktop sidebar / Mobile pull-down nav -->
@@ -169,6 +132,22 @@
                 </svg>
               </button>
             </div>
+            {#if expandedSections[item.path] && navPosts.length > 0}
+              <ul class="sub-nav-list">
+                {#each navPosts as post}
+                  <li class="sub-nav-item">
+                    <a
+                      href="/blog/{post.path}"
+                      class="sub-nav-link"
+                      class:sub-nav-link--active={isActive('/blog/' + post.path)}
+                      aria-current={isActive('/blog/' + post.path) ? 'page' : undefined}
+                    >
+                      {post.meta.title}
+                    </a>
+                  </li>
+                {/each}
+              </ul>
+            {/if}
           {:else}
             <a
               href={item.path}
@@ -182,26 +161,6 @@
         </li>
       {/each}
     </ul>
-
-    <!-- Breadcrumbs: shown when deeper than root -->
-    {#if breadcrumbs.length > 1}
-      <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <ol>
-          {#each breadcrumbs as crumb, i}
-            <li>
-              {#if i < breadcrumbs.length - 1}
-                <a href={crumb.path} class="crumb-link">{crumb.label}</a>
-                <span class="crumb-sep" aria-hidden="true">›</span>
-              {:else}
-                <span class="crumb-current" aria-current="page">
-                  {crumb.label}
-                </span>
-              {/if}
-            </li>
-          {/each}
-        </ol>
-      </nav>
-    {/if}
 
     <!-- Mobile-only: accessibility and theme toggle buttons -->
     <div class="mobile-controls">
@@ -326,47 +285,38 @@
     transform: rotate(90deg);
   }
 
-  /* ===== Breadcrumbs ===== */
-  .breadcrumbs {
-    border-top: 1px solid var(--glass-border-light);
-    font-size: 0.75rem;
-    margin-top: auto;
-    padding-top: var(--spacing-xs);
+  /* ===== Blog sub-menu ===== */
+  .sub-nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    list-style: none;
+    margin-top: 2px;
+    padding-left: var(--padding-link-left);
+  }
 
-    ol {
-      align-items: center;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.1rem;
-      list-style: none;
-      padding: 0;
+  .sub-nav-link {
+    border-radius: var(--radius-link);
+    color: var(--color-text-muted);
+    display: block;
+    font-size: 0.875rem;
+    overflow: hidden;
+    padding: 0.2rem var(--spacing-xs);
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition:
+      background-color var(--transition-link),
+      color var(--transition-link);
+
+    &:hover {
+      background: var(--glass-bg-hover);
+      color: var(--color-text);
     }
 
-    li {
-      align-items: center;
-      display: flex;
-      gap: 0.1rem;
-    }
-
-    .crumb-link {
+    &.sub-nav-link--active {
       color: var(--color-primary);
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-
-    .crumb-sep {
-      color: var(--color-text-muted);
-    }
-
-    .crumb-current {
-      color: var(--color-text-muted);
-      max-width: 120px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      font-weight: 600;
     }
   }
 
@@ -463,11 +413,6 @@
         height: 56px;
         position: relative;
       }
-    }
-
-    /* Breadcrumbs flow naturally after nav links on mobile */
-    .breadcrumbs {
-      margin-top: 0;
     }
 
     /* Dark mode mobile overrides */

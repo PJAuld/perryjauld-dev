@@ -7,41 +7,19 @@
   import HomeIcon from '$lib/components/home_icon.svelte';
   import NavBar from '$lib/components/nav_bar.svelte';
   import TitleBanner from '$lib/components/title_banner.svelte';
-  import {
-    THEME_DARK,
-    THEME_LIGHT,
-    applyTheme,
-    setStoredTheme,
-  } from '$lib/utils/theme.js';
-  import {
-    FONT_SIZE_NORMAL,
-    applyFontSize,
-    nextFontSize,
-    setStoredFontSize,
-  } from '$lib/utils/font_size.js';
+  import { THEME_DARK, THEME_LIGHT, applyTheme, setStoredTheme } from '$lib/utils/theme.js';
+  import { FONT_SIZE_NORMAL, applyFontSize, nextFontSize, setStoredFontSize } from '$lib/utils/font_size.js';
   import './styles.scss';
 
-  // Reactive state for the background video source URL
-  let backgroundVideoSrc = $state(''); // initialized empty; set on mount
   let currentTheme = $state(THEME_LIGHT); // initialized to light; updated on mount
   let currentFontSize = $state(FONT_SIZE_NORMAL); // initialized to normal; updated on mount
   let isMobile = $state(false); // Track if device is mobile
   let { children } = $props(); // slot content
 
   /**
-   * Reads the --background-video CSS variable, parses the URL,
-   *     and sets as the background video source.
-   * Also initializes the theme and font size state from data attributes.
+   * Initializes the theme and font size state from data attributes.
    */
   onMount(() => {
-    const rootStyles = getComputedStyle(document.documentElement);
-    const rawSrc = rootStyles.getPropertyValue('--background-video').trim();
-
-    // Extract URL from CSS variable; may be in url('...') format
-    const STRING_IN_URL_TAG = /^url\(['"]?(.+?)['"]?\)$/;
-    const match = rawSrc.match(STRING_IN_URL_TAG);
-    backgroundVideoSrc = match ? match[1] : rawSrc;
-
     // Read initial theme from data-theme attribute set by app.html script
     currentTheme = document.documentElement.dataset.theme || THEME_LIGHT;
 
