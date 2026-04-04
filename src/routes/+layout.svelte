@@ -173,13 +173,4 @@
       min-height: calc(100vh - var(--layout-mobile-nav-height)); /* Full height minus nav bar */
     }
   }
-
-  /* Dark mode styles for mobile */
-  @media (max-width: 768px) {
-    :global([data-theme="dark"]) {
-      .video-overlay {
-        background: var(--video-overlay-mobile-bg);
-      }
-    }
-  }
 </style>

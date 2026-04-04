@@ -73,19 +73,19 @@
 				{/if}
 				{#each navContext.before as post}
 					<li>
-						<a href="/blog/{post.path}" class="post-nav-link">
+						<a href="/blog/{post.path}" class="post-nav-link glass-card">
 							<span class="post-nav-title">{post.meta.title}</span>
 							<span class="post-nav-date">{formatDate(post.meta.date)}</span>
 						</a>
 					</li>
 				{/each}
-				<li class="post-nav-current" aria-current="page">
+				<li class="post-nav-current glass-card" aria-current="page">
 					<span class="post-nav-title">{navContext.current.meta.title}</span>
 					<span class="post-nav-date">{formatDate(navContext.current.meta.date)}</span>
 				</li>
 				{#each navContext.after as post}
 					<li>
-						<a href="/blog/{post.path}" class="post-nav-link">
+						<a href="/blog/{post.path}" class="post-nav-link glass-card">
 							<span class="post-nav-title">{post.meta.title}</span>
 							<span class="post-nav-date">{formatDate(post.meta.date)}</span>
 						</a>
@@ -192,36 +192,25 @@
 			}
 
 			.post-nav-link {
-				backdrop-filter: blur(var(--card-blur));
-				-webkit-backdrop-filter: blur(var(--card-blur));
-				background: var(--card-bg);
-				border: 1px solid var(--card-border);
-				border-radius: var(--radius-card);
-				box-shadow: var(--shadow-card);
 				color: var(--color-text);
 				display: flex;
 				flex-direction: column;
 				padding: var(--spacing-xs) var(--spacing-sm);
-				transition: var(--transition-card);
 
 				&:hover {
-					background: var(--card-bg-hover);
-					border-color: var(--card-border-hover);
-					box-shadow: var(--shadow-card-hover);
 					text-decoration: none;
 				}
 			}
 
 			.post-nav-current {
-				backdrop-filter: blur(var(--card-blur));
-				-webkit-backdrop-filter: blur(var(--card-blur));
-				background: var(--card-bg);
-				border: 1px solid var(--color-primary);
-				border-radius: var(--radius-card);
-				box-shadow: var(--shadow-card);
+				border-color: var(--color-primary);
 				display: flex;
 				flex-direction: column;
 				padding: var(--spacing-xs) var(--spacing-sm);
+
+				&:hover {
+					border-color: var(--color-primary);
+				}
 
 				.post-nav-title {
 					color: var(--color-primary);

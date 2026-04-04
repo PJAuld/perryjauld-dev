@@ -383,13 +383,14 @@
       backdrop-filter: var(--glass-blur-mobile);
       -webkit-backdrop-filter: var(--glass-blur-mobile);
       border-bottom: 1px solid var(--glass-border-light);
-      border-bottom-left-radius: 0;
+      border-bottom-left-radius: var(--corner-rounding);
       border-left: 1px solid var(--glass-border-light);
       border-right: 1px solid var(--glass-border-light);
       border-top-right-radius: 0;
       box-shadow: var(--glass-shadow-mobile-nav);
       flex-direction: row;
       height: var(--layout-mobile-nav-height);
+      justify-content: center;
       left: var(--layout-gap-sm);
       overflow: visible;
       padding: 0;
@@ -468,10 +469,8 @@
     .breadcrumbs {
       margin-top: 0;
     }
-  }
 
-  /* Dark mode mobile overrides */
-  @media (max-width: 768px) {
+    /* Dark mode mobile overrides */
     :global([data-theme="dark"]) {
       .nav-bar {
         background: var(--color-bg-secondary);
