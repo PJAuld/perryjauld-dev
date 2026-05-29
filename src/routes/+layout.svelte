@@ -5,7 +5,7 @@
   import favicon from '$lib/assets/favicon.svg';
   import BodyContent from '$lib/components/body_content.svelte';
   import HomeIcon from '$lib/components/home_icon.svelte';
-  import NavBar from '$lib/components/nav_bar.svelte';
+  import NavBar from '$lib/components/navigation/NavBar.svelte';
   import TitleBanner from '$lib/components/title_banner.svelte';
   import { THEME_DARK, THEME_LIGHT, applyTheme, setStoredTheme } from '$lib/utils/theme.js';
   import { FONT_SIZE_NORMAL, applyFontSize, nextFontSize, setStoredFontSize } from '$lib/utils/font_size.js';

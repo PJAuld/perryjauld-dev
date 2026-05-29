@@ -7,7 +7,7 @@ import { getAllPostMetadata, getPostBySlug } from '$lib/content/blog.js';
  * @param {Object} ctx - SvelteKit load context
  * @param {Object} ctx.params - URL parameters
  * @param {string} ctx.params.slug - The blog post slug from the URL
- * @returns {Promise<{content: Component, meta: object, allPosts: Array}>}
+ * @returns {Promise<{content: Component, meta: object, allPosts: Array, slug: string}>}
  *     The post content component, metadata, and all posts sorted by date descending
  * @throws {404} When the requested blog post file doesn't exist
  * @example
@@ -25,5 +25,6 @@ export async function load({ params: { slug } }) {
 		content: post.content,
 		meta: post.meta,
 		allPosts,
+		slug: post.path,
 	};
 }
