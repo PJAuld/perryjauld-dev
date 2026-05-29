@@ -1,0 +1,49 @@
+[data-theme="dark"] {
+	--color-primary: oklch(65% 0.15 240);
+	--color-secondary: oklch(75% 0.12 240);
+	--color-text: oklch(90% 0 0);
+	--color-bg: rgba(0, 0, 0, 0.7);
+	--color-bg-secondary: rgba(0, 0, 0, 0.65);
+	--color-border: rgba(0, 0, 0, 0.3);
+
+	--color-text-muted: #aaa;
+	--color-text-subtle: #bbb;
+
+	--color-tag-bg: rgba(30, 58, 138, 0.6);
+	--color-tag-text: #93c5fd;
+	--color-tag-border: rgba(147, 197, 253, 0.3);
+
+	--color-code-bg: #1a1a1a;
+
+	--card-bg: rgba(0, 0, 0, 0.5);
+	--card-bg-hover: rgba(0, 0, 0, 0.65);
+	--card-border: rgba(255, 255, 255, 0.1);
+	--card-border-hover: rgba(255, 255, 255, 0.15);
+
+	--shadow-card-hover: 0 8px 16px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+
+	--glass-bg-light: rgba(0, 0, 0, 0.20);
+	--glass-bg-medium: rgba(0, 0, 0, 0.60);
+	--glass-bg-heavy: rgba(0, 0, 0, 0.80);
+	--glass-bg-hover: rgba(255, 255, 255, 0.1);
+
+	--glass-border-light: rgba(255, 255, 255, 0.1);
+	--glass-border-medium: rgba(255, 255, 255, 0.15);
+
+	--glass-shadow-default: 0 4px 6px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	--glass-shadow-nav: 2px 0 10px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	--glass-shadow-body: -4px 0 20px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	--glass-shadow-mobile-body: 0 -4px 20px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	--glass-shadow-mobile-nav: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+
+	--video-overlay-bg: rgba(255, 255, 255, 0.05);
+	--video-overlay-mobile-bg: rgba(255, 255, 255, 0.08);
+}
+
+[data-font-size="large"] {
+	font-size: 112.5%;
+}
+
+[data-font-size="x-large"] {
+	font-size: 125%;
+}

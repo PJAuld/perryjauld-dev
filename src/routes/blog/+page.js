@@ -10,25 +10,8 @@
  * //   ]
  * // }
  */
-export async function load() {
-	// Use Vite's import.meta.glob to discover all markdown files
-	const allPostFiles = import.meta.glob('/src/content/blog/*.md');
-	const iterablePostFiles = Object.entries(allPostFiles);
+export async function load({ parent }) {
+	const { navPosts } = await parent();
 
-	// Load metadata from each post file in parallel
-	const allPosts = await Promise.all(
-		iterablePostFiles.map(async ([path, resolver]) => {
-			const { metadata } = await resolver();
-			const postPath = path.slice('/src/content/blog/'.length, -'.md'.length);
-
-			return { meta: metadata, path: postPath };
-		})
-	);
-
-	// Sort by date in descending order (newest first)
-	const sortedPosts = allPosts.sort((a, b) => {
-		return new Date(b.meta.date).getTime() - new Date(a.meta.date).getTime();
-	});
-
-	return { posts: sortedPosts };
+	return { posts: navPosts };
 }

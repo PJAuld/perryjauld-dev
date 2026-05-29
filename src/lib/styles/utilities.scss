@@ -1,0 +1,43 @@
+.skip-link {
+	background: var(--color-primary);
+	border-radius: 0 0 var(--radius-card) var(--radius-card);
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	color: #fff;
+	font-weight: 600;
+	height: 1px;
+	left: 50%;
+	overflow: hidden;
+	padding: var(--spacing-xs) var(--spacing-sm);
+	position: absolute;
+	top: 0;
+	transform: translateX(-50%);
+	white-space: nowrap;
+	width: 1px;
+	z-index: 9999;
+
+	&:focus {
+		clip: auto;
+		clip-path: none;
+		height: auto;
+		overflow: visible;
+		width: auto;
+	}
+}
+
+.glass-card {
+	-webkit-backdrop-filter: blur(var(--card-blur));
+	backdrop-filter: blur(var(--card-blur));
+	background: var(--card-bg);
+	border: 1px solid var(--card-border);
+	border-radius: var(--radius-card);
+	box-shadow: var(--glass-shadow-default);
+	transform: translateZ(0);
+	transition: var(--transition-card);
+
+	&:hover {
+		background: var(--card-bg-hover);
+		border-color: var(--card-border-hover);
+		box-shadow: var(--shadow-card-hover);
+	}
+}

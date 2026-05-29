@@ -9,7 +9,7 @@
   import TitleBanner from '$lib/components/title_banner.svelte';
   import { THEME_DARK, THEME_LIGHT, applyTheme, setStoredTheme } from '$lib/utils/theme.js';
   import { FONT_SIZE_NORMAL, applyFontSize, nextFontSize, setStoredFontSize } from '$lib/utils/font_size.js';
-  import './styles.scss';
+  import '../app.scss';
 
   let currentTheme = $state(THEME_LIGHT); // initialized to light; updated on mount
   let currentFontSize = $state(FONT_SIZE_NORMAL); // initialized to normal; updated on mount
