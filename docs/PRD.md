@@ -317,9 +317,6 @@ The app also enables `prerender = true`, so the intended deployment model is sta
 
 ## 13. Open Questions and Future Considerations
 
-- Should portfolio projects move from a hardcoded array into markdown, JSON, or another content source?
-- Should blog posts support categories, tags, series, or topic pages?
-- Should the site generate RSS, sitemap, Open Graph metadata, and canonical URLs?
 - Should post front matter be validated at build time?
 - Should image handling and media optimization be formalized?
 - Should search or filtering be added once the blog grows?
@@ -327,24 +324,28 @@ The app also enables `prerender = true`, so the intended deployment model is sta
 - Should the site expose a public contact path or social links?
 - Should accessibility tests be added to CI?
 
-## 14. Inferred Product Roadmap
+## 14. Roadmap
 
 Near term:
 
+- Standardize font size, spacing, and colors
 - Add richer post metadata and validation.
 - Add RSS, sitemap, and SEO metadata.
 - Expand portfolio content beyond the site itself.
+  - Move from a hardcoded array to markdown source.
 - Add tests for reader controls and mobile navigation.
+- Create logo SVG and favicon
 
 Medium term:
 
 - Add tags or categories for blog discovery.
 - Add project detail pages or richer project cards.
-- Add social/contact links.
+- Add background video selection feature
 - Introduce content previews, post hero assets, or related reading.
 
 Long term:
 
 - Support experiments as first-class routes or a separate section.
+- Create a custom context menu (right click).
 - Add search across posts and projects.
 - Build a stronger publishing workflow around drafts, previews, and content validation.
