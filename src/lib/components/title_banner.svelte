@@ -1,14 +1,14 @@
 <!-- Title Banner Component -->
 <script>
-  import FontSizeToggle from '$lib/components/font_size_toggle.svelte';
-  import ThemeToggle from '$lib/components/theme_toggle.svelte';
+  import ReaderControls from '$lib/components/preferences/ReaderControls.svelte';
 
   let { currentTheme, onToggle, currentFontSize, onFontSizeToggle } = $props();
 </script>
 
 <div class="title-banner">
-  <FontSizeToggle {currentFontSize} onToggle={onFontSizeToggle} />
-  <ThemeToggle {currentTheme} {onToggle} />
+  <div class="reader-controls-position">
+    <ReaderControls {currentTheme} {onToggle} {currentFontSize} {onFontSizeToggle} />
+  </div>
 </div>
 
 <style lang="scss">
@@ -27,6 +27,12 @@
     margin-left: var(--layout-content-offset); /* Aligns with nav bar width plus gap */
     position: relative; /* For absolutely positioned toggle button */
     view-transition-name: none; /* Exclude from view transitions */
+  }
+
+  .reader-controls-position {
+    bottom: 12px;
+    position: absolute;
+    right: 16px;
   }
 
   @media (max-width: 768px) {

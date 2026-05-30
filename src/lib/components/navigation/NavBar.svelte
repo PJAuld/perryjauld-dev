@@ -1,7 +1,6 @@
 <script>
 	import { page } from '$app/state';
-	import FontSizeToggle from '$lib/components/font_size_toggle.svelte';
-	import ThemeToggle from '$lib/components/theme_toggle.svelte';
+	import ReaderControls from '$lib/components/preferences/ReaderControls.svelte';
 	import MobileNavToggle from './MobileNavToggle.svelte';
 	import NavItem from './NavItem.svelte';
 	import NavSection from './NavSection.svelte';
@@ -77,8 +76,13 @@
 
 		<div class="mobile-controls">
 			<div class="mobile-controls-inner">
-				<FontSizeToggle {currentFontSize} onToggle={onFontSizeToggle} />
-				<ThemeToggle {currentTheme} {onToggle} />
+				<ReaderControls
+					variant="mobile"
+					{currentTheme}
+					{onToggle}
+					{currentFontSize}
+					{onFontSizeToggle}
+				/>
 			</div>
 		</div>
 	</div>
@@ -186,8 +190,10 @@
 			padding-top: var(--spacing-xs);
 
 			.mobile-controls-inner {
+				align-items: flex-end;
+				display: flex;
 				height: 56px;
-				position: relative;
+				justify-content: flex-end;
 			}
 		}
 

@@ -58,9 +58,7 @@
     height: 40px;
     width: 40px;
     padding: 0;
-    position: absolute;
-    bottom: 12px;
-    right: 16px;
+    flex-shrink: 0;
     transform: translateZ(0); /* Force GPU compositing to prevent iOS blur delay */
     transition: all var(--transition-duration) ease;
 
@@ -91,8 +89,6 @@
     .theme-toggle {
       height: 36px;
       width: 36px;
-      bottom: 8px;
-      right: 12px;
     }
 
     .icon {

@@ -3,6 +3,7 @@
   import { onMount } from 'svelte';
   import { onNavigate } from '$app/navigation';
   import favicon from '$lib/assets/favicon.svg';
+  import BackgroundMedia from '$lib/components/app/BackgroundMedia.svelte';
   import BodyContent from '$lib/components/body_content.svelte';
   import HomeIcon from '$lib/components/home_icon.svelte';
   import NavBar from '$lib/components/navigation/NavBar.svelte';
@@ -13,7 +14,6 @@
 
   let currentTheme = $state(THEME_LIGHT); // initialized to light; updated on mount
   let currentFontSize = $state(FONT_SIZE_NORMAL); // initialized to normal; updated on mount
-  let isMobile = $state(false); // Track if device is mobile
   let { children } = $props(); // slot content
 
   /**
@@ -25,9 +25,6 @@
 
     // Read initial font size from data-font-size attribute set by app.html script
     currentFontSize = document.documentElement.getAttribute('data-font-size') || FONT_SIZE_NORMAL;
-
-    // Detect mobile and apply blur immediately to prevent flash
-    isMobile = window.innerWidth <= 768;
   });
 
   /**
@@ -79,20 +76,7 @@
   <title>Perry J Auld</title>
 </svelte:head>
 
-<video
-  class="background-video"
-  style={isMobile ? 'filter: blur(2px);' : ''}
-  autoplay
-  muted
-  loop
-  playsinline
-  aria-hidden="true"
-  poster="/media/rocky-coast.jpeg"
->
-  <source src="/media/rocky-coast.mp4" type="video/mp4" />
-</video>
-
-<div class="video-overlay" aria-hidden="true"></div>
+<BackgroundMedia />
 
 <div class="layout-container">
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -110,29 +94,6 @@
 </div>
 
 <style lang="scss">
-  .background-video {
-    position: fixed; /* Stays fixed in the viewport */
-    inset: 0;
-    height: 100%;
-    width: 100%; 
-    object-fit: cover; /* Ensures video fills container while maintaining aspect ratio */
-    pointer-events: none; /* Prevents interaction with video */
-    z-index: var(--z-index-background); /* Places video behind all content */
-
-    @media (prefers-reduced-motion: reduce) {
-      display: none;
-    }
-  }
-
-  /* Adds subtle darkening to improve text readability and create depth. */
-  .video-overlay { 
-    background: var(--video-overlay-bg);
-    inset: 0;
-    position: fixed;
-    pointer-events: none;
-    z-index: var(--z-index-background);
-  }
-
   /* Creates a new stacking context above the background layers. */
   .layout-container {
     position: relative;
@@ -142,11 +103,6 @@
 
   /* Mobile responsive for small screens. */
   @media (max-width: 768px) {
-    /* Adjust overlay for better mobile readability */
-    .video-overlay {
-      background: var(--video-overlay-mobile-bg);
-    }
-
     .layout-container {
       min-height: calc(100vh - var(--layout-mobile-nav-height)); /* Full height minus nav bar */
     }

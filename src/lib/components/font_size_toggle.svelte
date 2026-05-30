@@ -50,9 +50,7 @@
     height: 40px;
     width: 40px;
     padding: 0;
-    position: absolute;
-    bottom: 12px;
-    right: 64px;
+    flex-shrink: 0;
     overflow: hidden;
     transform: translateZ(0);
     transition:
@@ -112,8 +110,6 @@
     .font-size-toggle {
       height: 36px;
       width: 36px;
-      bottom: 8px;
-      right: 56px;
 
       &:hover {
         width: 160px;
