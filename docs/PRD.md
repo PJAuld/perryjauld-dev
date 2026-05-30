@@ -56,8 +56,9 @@ Every route shares a fixed visual shell:
 - Desktop sidebar navigation.
 - Mobile pull-down navigation.
 - Home icon area.
-- Header/banner area with controls.
+- Header/banner area with desktop reader controls.
 - Main content container with glass styling.
+- Mobile reader controls inside the mobile navigation menu.
 - Skip link for keyboard users.
 
 ## 5. Functional Requirements
@@ -72,6 +73,7 @@ Every route shares a fixed visual shell:
 - The filename becomes the public slug, for example `welcome.md` maps to `/blog/welcome`.
 - Blog posts are automatically discovered with Vite `import.meta.glob`.
 - Blog lists and navigation sort posts by date descending.
+- Blog content discovery, slug mapping, single-post lookup, and date sorting are centralized in a shared content helper.
 
 ### Navigation
 
@@ -80,6 +82,7 @@ Every route shares a fixed visual shell:
 - Active route state is reflected visually and with `aria-current`.
 - Mobile users can open and close a compact navigation menu.
 - Navigating closes the mobile menu and resets expanded sections to match the current route.
+- Navigation UI is split into small components for the shell, leaf links, expandable sections, blog submenu, and mobile toggle.
 
 ### Blog Reading Experience
 
@@ -89,6 +92,7 @@ Every route shares a fixed visual shell:
 - Blog detail pages must include a link back to all posts.
 - Blog detail pages must show contextual nearby posts in a compact navigation list.
 - Markdown-rendered headings, lists, code blocks, inline code, and blockquotes must receive readable site styling.
+- Blog post article rendering, markdown styling, and nearby-post navigation are separate reusable components.
 
 ### Theme Control
 
@@ -108,7 +112,7 @@ Every route shares a fixed visual shell:
 - Page transitions use the View Transition API when available.
 - Page transitions are disabled when users prefer reduced motion.
 - Background video is hidden when users prefer reduced motion.
-- Mobile rendering applies stronger readability treatment over the background.
+- Mobile rendering applies stronger readability treatment over the background through CSS media queries.
 
 ## 6. Non-Functional Requirements
 
@@ -137,10 +141,11 @@ Every route shares a fixed visual shell:
 ### Maintainability
 
 - Shared UI belongs in `src/lib/components/`.
-- Pure helper logic belongs in `src/lib/utils/`.
+- Pure helper logic belongs in `src/lib/utils/` or a domain-specific helper folder such as `src/lib/blog/`.
+- Shared content loading belongs in `src/lib/content/`.
 - Route-specific UI and load functions remain in `src/routes/`.
 - Blog content remains separate from application code under `src/content/blog/`.
-- Global styling and design tokens are centralized in `src/routes/styles.scss`.
+- Global styling and design tokens are centralized through `src/app.scss` and partials in `src/lib/styles/`.
 
 ## 7. Design Direction
 
@@ -206,25 +211,50 @@ src/content/blog/
 SvelteKit file-based routing lives here.
 
 - `+layout.js` enables prerendering and loads blog metadata for global nav.
-- `+layout.svelte` owns the app shell, background media, controls state, and global layout composition.
+- `+layout.svelte` owns controls state and global shell composition.
 - `+page.svelte` renders the home page.
-- `styles.scss` contains global styles, design tokens, themes, accessibility utilities, and reusable glass-card styling.
-- `blog/+page.js` loads and sorts blog metadata.
+- `blog/+page.js` reuses layout-loaded blog metadata.
 - `blog/+page.svelte` renders the blog index.
 - `blog/[slug]/+page.js` resolves a post by slug and loads all posts for context navigation.
-- `blog/[slug]/+page.svelte` renders individual posts and nearby-post navigation.
+- `blog/[slug]/+page.svelte` composes individual post article and nearby-post navigation components.
 - `portfolio/+page.svelte` renders portfolio projects from a local static array.
 
 ### `src/lib/components/`
 
 Reusable UI components live here.
 
-- `nav_bar.svelte` provides desktop/mobile navigation and blog submenu behavior.
-- `title_banner.svelte` holds desktop theme and font-size controls.
+- `app/BackgroundMedia.svelte` renders the shared background video and readability overlay.
+- `blog/` contains markdown content, article, and post navigation components.
+- `navigation/` contains the desktop/mobile nav shell, nav items, expandable sections, blog submenu, mobile toggle, and nav item data.
+- `preferences/ReaderControls.svelte` composes theme and text-size controls for desktop and mobile placement.
+- `title_banner.svelte` holds the desktop reader-controls placement.
 - `body_content.svelte` wraps route content in the main glass panel.
 - `home_icon.svelte` provides a desktop home link surface.
-- `theme_toggle.svelte` renders and labels the light/dark toggle.
-- `font_size_toggle.svelte` renders and labels the text-size control.
+- `theme_toggle.svelte` renders and labels the layout-neutral light/dark toggle.
+- `font_size_toggle.svelte` renders and labels the layout-neutral text-size control.
+
+### `src/lib/content/`
+
+Content discovery and mapping helpers live here.
+
+- `blog.js` discovers markdown posts, maps content paths to slugs, sorts posts by date, and resolves posts by slug.
+- `blog.test.js` covers slug extraction and non-mutating date sorting.
+
+### `src/lib/blog/`
+
+Blog-specific pure helper logic lives here.
+
+- `navigation.js` computes nearby-post navigation context.
+- `navigation.test.js` covers first, middle, last, one-post, empty-list, and missing-post cases.
+
+### `src/lib/styles/`
+
+Global styling partials live here and are imported by `src/app.scss`.
+
+- `tokens.scss` defines design tokens and layout variables.
+- `themes.scss` defines theme and font-size data-attribute overrides.
+- `base.scss` defines reset, base element, typography, link, and focus rules.
+- `utilities.scss` defines shared utility classes such as `.skip-link` and `.glass-card`.
 
 ### `src/lib/utils/`
 
@@ -257,6 +287,8 @@ Playwright tests cover basic page rendering, navigation, and blog-post viewing.
 Unit coverage:
 
 - Date formatting accepts both strings and Date objects.
+- Blog content helper slug extraction and non-mutating date sorting.
+- Blog post navigation context for empty, missing, first, middle, last, and one-post cases.
 
 End-to-end coverage:
 
@@ -271,7 +303,6 @@ Recommended future coverage:
 - Mobile navigation open and close behavior.
 - Blog 404 behavior for missing slugs.
 - Markdown rendering of headings, code, blockquotes, and GFM features.
-- Post sorting by date.
 
 ## 12. Deployment Model
 

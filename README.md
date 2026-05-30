@@ -6,7 +6,8 @@ Personal website, blog, and portfolio showcase built with SvelteKit.
 
 - 📝 Markdown-based blog system
 - 💼 Portfolio showcase
-- 🎨 SCSS styling
+- 🎨 Modular SCSS styling with centralized design tokens
+- 🌓 Persistent theme and text-size reader controls
 - ✅ Full test coverage (Vitest + Playwright)
 - 🚀 Deployed on Vercel
 
@@ -23,24 +24,27 @@ Personal website, blog, and portfolio showcase built with SvelteKit.
 
 ```
 src/
+├── app.scss              # Global stylesheet entrypoint
 ├── app.html              # HTML shell; includes the inline theme-init script
 ├── content/
 │   └── blog/             # Markdown blog posts (*.md); each file is a post
 ├── lib/
 │   ├── assets/           # Static assets imported by components (e.g. favicon.svg)
-│   ├── components/       # Reusable Svelte components shared across routes
+│   ├── blog/             # Blog-specific pure helpers and tests
+│   ├── components/       # Reusable Svelte components grouped by concern
+│   ├── content/          # Content discovery/loading helpers
+│   ├── styles/           # SCSS tokens, themes, base styles, and utilities
 │   └── utils/            # Pure JavaScript utility modules (format, theme, etc.)
 └── routes/
-    ├── styles.scss        # Global styles, CSS custom properties, and shared classes
     ├── +layout.js         # Root layout load function (enables prerendering)
-    ├── +layout.svelte     # Root layout: background video, nav, theme toggle
+    ├── +layout.svelte     # Root layout shell composition
     ├── +page.svelte       # Home page
     ├── blog/
-    │   ├── +page.js       # Loads and sorts all blog post metadata
+    │   ├── +page.js       # Reuses layout-loaded blog post metadata
     │   ├── +page.svelte   # Blog listing page
     │   └── [slug]/
     │       ├── +page.js   # Loads a single post by slug
-    │       └── +page.svelte # Individual blog post page
+    │       └── +page.svelte # Composes blog post article and navigation
     └── portfolio/
         └── +page.svelte   # Portfolio page
 ```
@@ -51,7 +55,10 @@ src/
 |---|---|
 | `src/content/blog/` | Add new blog posts here as `*.md` files with YAML front matter (`title`, `date`, `excerpt`) |
 | `src/lib/assets/` | Place static assets that need to be imported (e.g. SVGs). Files referenced directly from `static/` don't belong here |
-| `src/lib/components/` | Svelte components used in more than one route |
+| `src/lib/blog/` | Blog-specific pure helpers, such as contextual post navigation |
+| `src/lib/components/` | Svelte components grouped by app shell, blog, navigation, preferences, and shared surfaces |
+| `src/lib/content/` | Content loading/discovery helpers for markdown-backed content |
+| `src/lib/styles/` | Global SCSS partials for tokens, themes, base rules, and utilities |
 | `src/lib/utils/` | Framework-agnostic JavaScript utility functions with corresponding `*.test.js` unit tests |
 | `src/routes/` | SvelteKit file-based routes; each folder maps to a URL segment |
 | `static/` | Publicly served files (images, fonts, `robots.txt`); reference via absolute URL (e.g. `/media/bg.jpg`) |
