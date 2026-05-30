@@ -1,0 +1,86 @@
+:root {
+	--color-primary: oklch(45% 0.15 240);
+	--color-secondary: oklch(30% 0.12 240);
+	--color-text: oklch(20% 0 0);
+	--color-bg: rgba(255, 255, 255, 0.7);
+	--color-bg-secondary: rgba(255, 255, 255, 0.65);
+	--color-border: rgba(255, 255, 255, 0.3);
+	--corner-rounding: 45px 65px;
+	--spacing-xs: 0.5rem;
+	--spacing-sm: 1rem;
+	--spacing-md: 2rem;
+	--spacing-lg: 4rem;
+	--font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+	--color-text-muted: #666;
+	--color-text-subtle: #555;
+
+	--color-tag-bg: rgba(227, 242, 253, 0.8);
+	--color-tag-text: #0066cc;
+	--color-tag-border: rgba(0, 102, 204, 0.2);
+
+	--color-code-bg: #f5f5f5;
+
+	--card-bg: rgba(255, 255, 255, 0.5);
+	--card-bg-hover: rgba(255, 255, 255, 0.65);
+	--card-border: rgba(255, 255, 255, 0.4);
+	--card-border-hover: rgba(255, 255, 255, 0.5);
+	--card-blur: 10px;
+
+	--shadow-card-hover: 0 8px 16px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+
+	--radius-card: 12px;
+	--radius-tag: 4px;
+	--radius-code: 4px;
+
+	--font-size-hero: 4rem;
+	--font-size-date: 0.9rem;
+	--font-size-tag: 0.85rem;
+	--font-size-code: 0.9em;
+
+	--spacing-tag-v: 0.25rem;
+	--spacing-tag-h: 0.75rem;
+	--spacing-code-v: 0.2rem;
+	--spacing-code-h: 0.4rem;
+	--spacing-card: 1.5rem;
+	--spacing-xl: 3rem;
+
+	--transition-duration: 0.3s;
+	--transition-card: all 0.3s ease-in-out;
+	--transition-link: 0.2s;
+	--transition-view-duration: 0.25s;
+
+	--glass-bg-light: rgba(255, 255, 255, 0.20);
+	--glass-bg-medium: rgba(255, 255, 255, 0.60);
+	--glass-bg-heavy: rgba(255, 255, 255, 0.80);
+	--glass-bg-hover: rgba(255, 255, 255, 0.2);
+
+	--glass-border-light: rgba(255, 255, 255, 0.2);
+	--glass-border-medium: rgba(255, 255, 255, 0.3);
+
+	--glass-blur-light: blur(10px) saturate(180%);
+	--glass-blur-heavy: blur(20px) saturate(180%);
+	--glass-blur-hover: blur(10px);
+	--glass-blur-mobile: blur(12px) saturate(150%);
+
+	--glass-shadow-default: 0 4px 6px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+	--glass-shadow-nav: 2px 0 10px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+	--glass-shadow-body: -4px 0 20px rgba(0, 0, 0, 0.15), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+	--glass-shadow-mobile-body: 0 -4px 20px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+	--glass-shadow-mobile-nav: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+
+	--layout-header-height: 90px;
+	--layout-sidebar-width: 190px;
+	--layout-gap-sm: 10px;
+	--layout-gap-md: 20px;
+	--layout-sidebar-offset: 110px;
+	--layout-content-offset: 210px;
+	--layout-mobile-nav-height: 80px;
+
+	--video-overlay-bg: rgba(0, 0, 0, 0.15);
+	--video-overlay-mobile-bg: rgba(0, 0, 0, 0.25);
+	--z-index-background: 0;
+	--z-index-content: 1;
+	--radius-link: 4px;
+	--padding-link-left: 1.5rem;
+}
